@@ -10,6 +10,4 @@ $PORTALHOST = '192.168.1.10';
 $PORTALUSER = 'anup';
 $PORTALPASS = 'tripleseven7';
 $PORTALDB = 'wealthportal';
-
-
-?>
+$VERSIONDIR = 'wealth04101022/';

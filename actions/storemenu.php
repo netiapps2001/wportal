@@ -1,8 +1,15 @@
 <?php
-inlcude_once('../includes/system/kickstart.php');
+include_once($ROOTDIR.$VERSIONDIR.'includes/system/kickstart.php');
 
-	$name=$_POST['menuname'];
+	$name=$_REQUEST['menuname'];
 	$href=$_POST['href'];
-	$status=$_POSt['status'];
-	$QUERY->formStaticQuery('insertMenu');
+	$status=$_POST['status'];
+	$arr= array($name,$href,$status);
+	//print_r($arr);	
+	$QUERY->formStaticQuery("insertMenu",$arr);
+		
+//$DB->executeQuery($QUERY);
+	
 ?>
+
+

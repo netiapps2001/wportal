@@ -7,9 +7,9 @@
 	</script>
 </head>
 <body>
-	<form method="post" action="../../actions/storemenu.php" onsubmit="return ">
+	<form method="post" action="../../actions/storemenu.php" >
 
-        <label>Id <input type="text" id="menuid" name="menuid"/></label><br>
+        
         <label>Name <input type="text" id="menuname" name="menuname"/></label><br>
         <label>Href <input type="text" id="href" name="href"/></label><br>
         <label>Status
