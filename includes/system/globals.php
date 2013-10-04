@@ -7,11 +7,19 @@ $WSDLHOST = "192.168.1.10";
 $WSDLUSER = "anup";
 $WSDLPASS = "tripleseven7";
 $WSDLDB = "";
-$PORTALHOST = '192.168.1.10';
-$PORTALUSER = 'anup';
-$PORTALPASS = 'tripleseven7';
+
+//$PORTALHOST = '192.168.1.10';
+//$PORTALUSER = 'anup';
+//$PORTALPASS = 'tripleseven7';
+
+$PORTALHOST = 'localhost';
+$PORTALUSER = 'root';
+$PORTALPASS = 'root';
+
+
+
 $PORTALDB = 'wealthportal';
-$VERSIONDIR = 'wealth04101022/';
+$VERSIONDIR = 'wealth04101642/';
 $SERVERPATH = '192.168.1.10/~anupssh/wealthportal/';
 //$ROOTDIR = $SERVERPATH;
 //$VERSIONDIR = '';
