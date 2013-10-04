@@ -1,5 +1,5 @@
 <?php
-public class IOHelper
+class IOHelper
 {
 	public function sendMail($subject,$to)
 	{
@@ -14,7 +14,7 @@ public class IOHelper
 					$body ="Your payment has been done successfully";
 					break;
 		}
-		include_once('../includes/system/kickstart.php');
+//		include_once('../includes/system/kickstart.php');
 		$mail = new PHPMailer();		
 		$mail->IsSMTP();
 		$mail->SMTPAuth = true;
@@ -73,4 +73,4 @@ public class IOHelper
 
 }
 ?>
-
+`

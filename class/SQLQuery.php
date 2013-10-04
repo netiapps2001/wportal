@@ -1,13 +1,12 @@
 <?php
-
 include_once($ROOTDIR.$VERSIONDIR."includes/system/globals.php");
-include_once($ROOTDIR.$VERSIONDIR.'includes/system/kickstart.php');
+//include_once($ROOTDIR.$VERSIONDIR.'includes/system/kickstart.php');
 //SQLQuery class to help as a query gienerator
-Class SQLQuery{
-	echo "hi";
+class SQLQuery{
 	//Function to  generate appropriate SQL query	
 	public function formStaticQuery($varient,$where){
-
+		echo 'gbvrfhmn';
+		
 		$sqlString = "";
 		switch($varient){
 			case "pullService" : 

@@ -2,7 +2,7 @@
 
 include_once("../includes/system/globals.php");
 //DBHelper class contains all the function to help with database connectivity and data manipulation
-public class DBHelper(){
+class DBHelper{
 
 	//Function to enable database for WSDL usage
 	public function enableWSDL(){
