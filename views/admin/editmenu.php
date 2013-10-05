@@ -1,24 +1,25 @@
+<?php
+include_once('../../includes/system/kickstart.php');
+
+$name=$_GET['name'];
+$href=$_GET['href'];
+$status=$_GET['status'];
+$arr=array($name,$href,$status);
+?>
 <html>
 <head>
         <title>
                 Wealthportal
         </title>
-        <script type="text/javascript" src="../../includes/js/menuvalidation.js">
-        </script>
 </head>
 <body>
-        <form method="post" action="../../actions/storemenu.php" onsubmit="return ">
 
-        <label>Id <input type="text" id="menuid" name="menuid"/></label><br>
-        <label>Name <input type="text" id="menuname" name="menuname"/></label><br>
-        <label>Href <input type="text" id="href" name="href"/></label><br>
-        <label>Status
-        <select name="status">
-                <option value="0">0</option>
-                <option value="1">1</option>
-        </select>
+<form method="post" action="">
+        <label>Name <input type="text" id="menuname" name="menuname"value="<?php echo $name;?>"/></label><br>
+        <label>Href <input type="text" id="href" name="href" value="<?php echo $href; ?>"/></label><br>
+        <label><input type="text" id="status" name="status" value="<?php echo $status; ?>" />
         </label><br>
-        <input type="submit" value="Submit" name="submit"/>
+        <input type="submit" value="Submit" name="submit" onclick="return formStaticQuery('editMenu',$arr);"/>
 
 </form>
 </body>

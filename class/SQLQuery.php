@@ -13,19 +13,24 @@ class SQLQuery{
 				break;
 			case "insertMenu":
 		
-				echo $name=$where[0];
-				echo $href=$where[1];
-				echo $status=$where[2];
+				 $name=$where[0];
+				 $href=$where[1];
+				 $status=$where[2];
 				
-			echo $sqlString = "insert into menu(name,href,status) values('$name','$href','$status')";
+			 $sqlString = "insert into menu(name,href,status) values('$name','$href','$status')";
 				break;
 			case "displayMenu":
-				echo "hello";
-				$sqlstring = "Select *from menu where status='1'";
+				$sqlString="select *from menu where status='$where'";
 				break;	
 			case "editMenu":
-				$sqlString = "update menu_table set name='$name' and href='$href' and status='$status'";
-
+				$name=$where[0];
+				$href=$where[1];
+				$status=$where[2];
+				$sqlString = "update menu set name='$name' and href='$href' and status='$status'";
+				break;
+			case "deleteMenu":
+				$sqlString ="update menu set status='0' where status='$where'";
+				break;
 	}
 		return $sqlString;
 
