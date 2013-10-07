@@ -31,6 +31,20 @@ class SQLQuery{
 			case "deleteMenu":
 				$sqlString ="update menu set status='0' where status='$where'";
 				break;
+			case "login":
+				$username=$where[0];
+				$password=$where[1];
+				$sqlString="select *from login where username='$username' and password='$password'";
+				break;
+			case "insertProducts":
+				 $name=$where[0];
+				 $des=$where[1];
+				 $status=$where[2];
+				 
+		 $sqlString="insert into product values('','$name','$des','$status')";
+		
+			break;
+
 	}
 		return $sqlString;
 
