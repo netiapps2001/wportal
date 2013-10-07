@@ -70,7 +70,14 @@ class IOHelper
                         $_SESSION['timeout']=time();
                 }
         }
-
+	
+	public function validateWSDL(){
+		return true;
+	}
+	
+	public function checkForSubmission(){
+		return true;
+	}
 }
 ?>
 `
