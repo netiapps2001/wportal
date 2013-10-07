@@ -37,7 +37,7 @@
   
   <service name="HelloService">
     <port name="HelloPort" binding="tns:HelloBinding">
-	  <soap:address location="http://localhost/wealth07101338/SOAP/scripts/pushInvoice.php" />
+	  <soap:address location="http://localhost/wealth07101344/SOAP/scripts/pullService.php" />
 	</port>
   </service>
   
