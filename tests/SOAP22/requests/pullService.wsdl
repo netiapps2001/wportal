@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<definitions name="WealthJunctionPortal" targetNamespace="urn:WealthJunctionPortal" xmlns:tns="urn:WealthJunctionPortal" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+	<types>
+		<xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:WealthJunction">
+			<xsd:element name="category" type="xsd:int" />
+			<xsd:element name="soapresponse" type="xsd:string" />
+		</xsd:schema>
+	</types>
+
+	<message name="pullService">
+		<part name="category" type="tns:category" />
+	</message>
+
+	<message name="pullServiceResponse">
+		<part name="return" type="tns:soapresponse" />
+	</message>
+
+	<portType name="servicePort">
+		<operation name="pullServiceList">
+			<input message="tns:pullService" />
+			<output message="tns:pullServiceResponse" />
+		</operation>
+	</portType>
+
+	<binding name="serviceBinding" type="tns:servicePort">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+			<operation name="pullServiceList">
+				<soap:operation soapAction="urn:ServiceAction" />
+					<input>
+						<soap:body use="encoded" namespace="urn:Service" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+					</input>
+					<output>
+						<soap:body use="encoded" namespace="urn:Service" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+					</output>
+			</operation>
+	</binding>
+		
+	<service name="ServiceRequest">
+		<port name="servicePort" binding="tns:serviceBinding" >
+			<soap:address location="http://192.168.1.10/~anupssh/wealthportal/SOAP/scripts/pullServiceList.php" />
+		</port>
+	</service>
+</definitions>
