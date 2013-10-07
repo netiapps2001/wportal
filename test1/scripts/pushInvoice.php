@@ -5,13 +5,13 @@ if(!extension_loaded("soap"))
 }
 
 ini_set("soap.wsdl_cache_enabled","0");
-$server = new SoapServer("../requests/createInvoice.wsdl");
+$server = new SoapServer("../requests/pullServiceList.wsdl");
 
-function pushInv($soid, $invid)
+function fetchServiceList($soid)
 {
-	return 'hi foo test';
+	return 'hi foor';
 }
 
-$server->AddFunction("pushInv");
+$server->AddFunction("fetchServiceList");
 $server->handle();
 ?>
