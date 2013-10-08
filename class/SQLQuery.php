@@ -1,11 +1,11 @@
 <?php
 include_once($ROOTDIR.$VERSIONDIR."includes/system/globals.php");
-//include_once($ROOTDIR.$VERSIONDIR.'includes/system/kickstart.php');
+
 //SQLQuery class to help as a query gienerator
 class SQLQuery{
 	//Function to  generate appropriate SQL query	
 	public function formStaticQuery($varient,$where){
-		
+		echo "hi";
 		$sqlString = "";
 		switch($varient){
 			case "pullService" : 
@@ -36,12 +36,12 @@ class SQLQuery{
 				$password=$where[1];
 				$sqlString="select *from login where username='$username' and password='$password'";
 				break;
-			case "insertProducts":
-				 $name=$where[0];
-				 $des=$where[1];
-				 $status=$where[2];
+			case "upload":
+				echo $name=$where[0];
+				echo $des=$where[1];
+				echo $status=$where[2];
 				 
-		 $sqlString="insert into product values('','$name','$des','$status')";
+		 $sqlString="insert into upload values('','$name','$des','$status')";
 		
 			break;
 

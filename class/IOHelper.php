@@ -38,46 +38,61 @@ class IOHelper
 			echo("<p>Message successfully sent</p>");
 		}
 	}
-
-	public function isAuthenticated()
-	{
-		public function isActive()
-		{
-			public function isTimedIn()
-			{
-
-			}
-		}
-	}
-
-	 public function isActive()
+	 public function isAuthenticated()
         {
-                if(isset($_SESSION['id']))
+                $active=$this->isActive();
+                if($active)
                 {
                         $time=$this->isTimedIn();
                         if($time)
                         {
-                                header(Location:);
+                                header("Location:../admin/index.php");
                         }
                         else
                         {
-                                header(Location:);
+                                header("Location:../views/admin/login.php");
                         }
+                }header("Location:../views/admin/login.php");
+        }
+
+         public function isActive()
+        {
+                if(session_id=='')
+                {
+                        return true;
                 }
                 else
                 {
-                        $_SESSION['id']=$_GET['id'];
-                        $_SESSION['timeout']=time();
+                        return false;
                 }
         }
-	
-	public function validateWSDL(){
-		return true;
-	}
-	
-	public function checkForSubmission(){
-		return true;
-	}
+
+        public function isTimedIn()
+        {
+
+                // set time-out period (in seconds)
+                $inactive = 600;
+                // check to see if $_SESSION["timeout"] is set
+                if (isset($_SESSION["timeout"]))
+                {
+                        // calculate the session's "time to live"
+                        $sessionTTL = time() - $_SESSION["timeout"];
+                        if ($sessionTTL > $inactive)
+                        {
+				  session_destroy();
+                                $this->logout();
+                        }
+                }
+
+                $_SESSION["timeout"] = time();
+        }
+
+        public function logout()
+        {
+                session_start();
+                session_unset();
+        }
+
+
 }
 ?>
-`

@@ -27,7 +27,7 @@ class DBHelper{
 
 	//Function to execute a parameterised query
 	public function executeQuery($query){
-		//$this->connectPortal();
+		$this->connectPortal();
 		$queryResponse = mysql_query($query);
 		if($this->fetchNumRecords($queryResponse)==0){
 			return 0;
