@@ -2,8 +2,10 @@
 <head>
         <title>Wealthportal</title>
 </head>
+<script type="text/javascript" src="../../includes/js/validation.js">
+</script>
 <body>
-        <form method="post" action="../../actions/logindetails.php" onsubmit="return validate();">
+<form action="../../actions/logindetails.php" method="post" onSubmit="return validate();">
         <table border=1>
                 <tr><td>Username<input type="text" name="uname" id="uname"/><br></td></tr>
                 <tr><td><div id="name"></div></td></tr>

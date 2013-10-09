@@ -1,6 +1,41 @@
 <?php
+include_once('../includes/system/globals.php');
 class IOHelper
 {
+	public function setErrorMessage($msg){
+		$this->pushError($msg);
+	}
+
+	public function pushError(){
+		GLOBAL $errorArray;
+		array_push($errorArray,$msg);
+		$this->setSession('errorSession',$errorArray);
+	}
+
+	public function setSession($var,$val){
+		$_SESSION[$var] = $val;
+	}
+	public function fetchSystemVar($var,$method){
+		
+		switch($method) {
+			case 'post':
+				$retValue = $_POST[$var];
+				break;
+			
+			case 'request':
+				$retValue = $_REQUEST[$var];
+				break;
+			
+			case 'get':
+				$retValue = $_GET[$var];
+				break;
+				
+			case 'session':
+				$retValue = $_SESSION[$var];
+				break;
+		}
+		return $retValue;
+	}
 	public function sendMail($subject,$to)
 	{
 		switch($subject)
@@ -46,7 +81,8 @@ class IOHelper
                         $time=$this->isTimedIn();
                         if($time)
                         {
-                                header("Location:../admin/index.php");
+				$nowtime=time();
+                              $this->setSessionTimedOut($nowtime);
                         }
                         else
                         {
@@ -87,12 +123,9 @@ class IOHelper
                 $_SESSION["timeout"] = time();
         }
 
-        public function logout()
-        {
-                session_start();
-                session_unset();
-        }
-
-
+  	public function setSessionTimedOut($nowtime)
+	{
+		$_SESSION['timeout']= $nowtime;
+	}    
 }
 ?>

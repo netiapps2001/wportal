@@ -1,4 +1,4 @@
-function  isEmpty(id)
+/*function  isEmpty(id)
   {
  var empty=document.getElementById(id).value;
   if(empty==""||empty==null)
@@ -52,5 +52,15 @@ function isAlphanumeric(passwordid)
    }
  return true;
 }
+*/
 
-
+function validate()
+{
+	var uname= document.getElementById('uname').value;
+	alert(uname);
+	var pass=document.getElementById('password').value;
+	if(uname="" || uname="null")
+	{
+		document.getElementById('name').innerHTML=("enter correct username");
+	}
+}

@@ -5,7 +5,6 @@ include_once($ROOTDIR.$VERSIONDIR."includes/system/globals.php");
 class SQLQuery{
 	//Function to  generate appropriate SQL query	
 	public function formStaticQuery($varient,$where){
-		echo "hi";
 		$sqlString = "";
 		switch($varient){
 			case "pullService" : 
@@ -17,7 +16,7 @@ class SQLQuery{
 				 $href=$where[1];
 				 $status=$where[2];
 				
-			 $sqlString = "insert into menu(name,href,status) values('$name','$href','$status')";
+				 $sqlString = "insert into menu(name,href,status) values('$name','$href','$status')";
 				break;
 			case "displayMenu":
 				$sqlString="select *from menu where status='$where'";
@@ -37,11 +36,10 @@ class SQLQuery{
 				$sqlString="select *from login where username='$username' and password='$password'";
 				break;
 			case "upload":
-				echo $name=$where[0];
-				echo $des=$where[1];
-				echo $status=$where[2];
-				 
-		 $sqlString="insert into upload values('','$name','$des','$status')";
+				$name=$where[0];
+				$des=$where[1];
+				$status=$where[2];
+				$sqlString="insert into upload values('','$name','$des','$status')";
 		
 			break;
 

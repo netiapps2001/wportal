@@ -17,10 +17,10 @@ $PORTALHOST = 'localhost';
 $PORTALUSER = 'root';
 $PORTALPASS = 'root';
 
-
+$errorArray = array();
 
 $PORTALDB = 'wealthportal';
-$VERSIONDIR = 'wealth08100952/';
+$VERSIONDIR = 'wealth09101009/';
 //$SERVERPATH = '192.168.1.10/~anupssh/wealthportal/';
 //$ROOTDIR = $SERVERPATH;
 //$VERSIONDIR = '';
