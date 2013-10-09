@@ -42,7 +42,9 @@ class SQLQuery{
 				$sqlString="insert into upload values('','$name','$des','$status')";
 		
 			break;
-
+			
+			case "getcompany":
+				$sqlString="select name from upload where status='1'";
 	}
 		return $sqlString;
 

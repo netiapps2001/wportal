@@ -1,6 +1,6 @@
 <html>
 <body>
-<form action="../../actions/uploadImage.php" method="POST" enctype="multipart/form-data">
+<form action="../../actions/addAssociation.php" method="POST" enctype="multipart/form-data">
 
 
 Name <input type="name" name="name" id="name"/><br />
