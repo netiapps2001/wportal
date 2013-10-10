@@ -1,53 +1,61 @@
-<?php
-//echo "hello";
 
-$dir = '../../includes/images';
-if(file_exists($dir)==false){
-echo "Directory not found";
-}
-else {
-echo"dir";
-$dir_contents = scandir($dir);
-//print_r($dir_contents);}
-
-foreach ($dir_contents as $file){
-//echo "$file<br/>";
-$file_type = end(explode('.',$file));
-
-echo"<img src = '.$dir.' '/' '.$file.' '/' '.$file.' >";
-}
-}
-?>
 <?php
 include_once('../../includes/system/kickstart.php');
 
 
-        $status=1;
-        $result= $QUERY->formStaticQuery("fetchCompanyDetail",$status);
-        $menus= $DB->executeQuery($result);
-
-
-        // $menus =mysql_query("Select *from menu where status='1'");
+      $result= $QUERY->formStaticQuery("fetchCompanyDetail",1);
+      $company_detail =$DB->executeQuery($result);
 
 ?>
 <html>
-<head></head>
+<head>
+<script>
+function updateStatus(str,mx)
+{
+if (window.XMLHttpRequest)
+  {// code for IE7+, Firefox, Chrome, Opera, Safari
+  xmlhttp=new XMLHttpRequest();
+  }
+else
+  {// code for IE6, IE5
+  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+  }
+xmlhttp.onreadystatechange=function()
+  {
+  if (xmlhttp.readyState==4 && xmlhttp.status==200)
+    {
+    alert(xmlhttp.responseText);
+    }
+  }
+xmlhttp.open("GET","http://localhost/wealthportal/wealth10101140/views/admin/test.php?q="+str+"&p="+mx,true);
+xmlhttp.send();
+}
+
+</script>
+
+</head>
 <body>
 <table border="1">
+<tr><th>id</th><th>logo</th><th>Name</th><th>Description</th></tr>
+
 <?php
-while($row=mysql_fetch_assoc($menus))
+while($row=mysql_fetch_assoc($company_detail))
 {
 ?>
+
+
         <tr><td><?php echo $row['uid'];?></td>
-        <td><?php echo $row['name'];?></td>
-        <td><?php echo $row['description'];?></td>
-        <td><?php echo $row['status'];?></td>
-        <td><a href="editmenu.php?name=<?php echo $row['name'];?>&href=<?php echo $row['href'];?>&status=<?php echo $row['status'];?>">Edit</a></td> 
-        <td><a href="#" onclick="formStaticQuery('deleteMenu','$row['status']');return false;">delete</a></td></tr>
+            <td><?php echo '<img src="../../includes/images/logo/'.$row['name'].'.jpg">'?></td>
+            <td><?php echo $row['name'];?></td>
+            <td><?php echo $row['description'];?></td>
+            <td><a href="editmenu.php?name=<?php echo $row['name'];?>&href=<?php echo $row['href'];?>&status=<?php echo $row['status'];?>">Edit</a></td> 
+        <td><button href="#" onClick="updateStatus('deleteMenu','<?php echo $row['uid'];?>')">delete</button></td>
+	</tr>
 <?php
 }
 ?>  
 </table> 
 </body>
 </html>
+
 

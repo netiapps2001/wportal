@@ -28,7 +28,7 @@ class SQLQuery{
 				$sqlString = "update menu set name='$name' and href='$href' and status='$status'";
 				break;
 			case "deleteMenu":
-				$sqlString ="update menu set status='0' where status='$where'";
+				$sqlString ="update upload set status=0 where uid='$where'";
 				break;
 			case "login":
 				$username=$where[0];
@@ -42,7 +42,13 @@ class SQLQuery{
 				$sqlString="insert into upload values('','$name','$des','$status')";
 		
 			break;
+
 			
+			case "fetchCompanyDetail":
+				$sqlString = "select *from upload where status='$where'";
+				break;
+			
+
 			case "getcompany":
 				$sqlString="select name from upload where status='1'";
 	}
