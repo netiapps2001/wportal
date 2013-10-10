@@ -5,9 +5,8 @@ include_once('../../includes/system/kickstart.php');
 $p=$_REQUEST['q'];
 
 $r=$_REQUEST['p'];
-$x = new SQLQuery();
-
-echo $x->formStaticQuery($p,$r);
+$query = new SQLQuery();
+echo $query ->formStaticQuery($p,$r);
 $db = new DBHelper();
-$db->executeQuery($x->formStaticQuery($p,$r));
+$db->executeQuery($query->formStaticQuery($p,$r));
 ?>

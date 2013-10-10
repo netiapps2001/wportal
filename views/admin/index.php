@@ -10,26 +10,28 @@ include_once('../../includes/system/kickstart.php');
 <html>
 <head>
 <script>
-function updateStatus(str,mx)
-{
-if (window.XMLHttpRequest)
-  {// code for IE7+, Firefox, Chrome, Opera, Safari
-  xmlhttp=new XMLHttpRequest();
-  }
-else
-  {// code for IE6, IE5
-  xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-  }
-xmlhttp.onreadystatechange=function()
-  {
-  if (xmlhttp.readyState==4 && xmlhttp.status==200)
-    {
-    alert(xmlhttp.responseText);
-    }
-  }
-xmlhttp.open("GET","http://localhost/wealthportal/wealth10101140/views/admin/test.php?q="+str+"&p="+mx,true);
-xmlhttp.send();
-}
+	function updateStatus(str,id)
+		{	
+			if (window.XMLHttpRequest)
+ 		       	 {// code for IE7+, Firefox, Chrome, Opera, Safari
+ 				 xmlhttp=new XMLHttpRequest();
+  	          	}
+		
+			else
+ 			 {// code for IE6, IE5
+ 				 xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+ 			 }
+	
+		xmlhttp.onreadystatechange=function()
+ 		 {
+ 			 if (xmlhttp.readyState==4 && xmlhttp.status==200)
+   			 {
+   				 alert(xmlhttp.responseText);
+   			 }
+ 		 }
+		xmlhttp.open("GET","http://localhost/wealthportal/wealth10101255/views/admin/test.php?q="+str+"&p="+id,true);
+		xmlhttp.send();
+		}	
 
 </script>
 
@@ -48,7 +50,7 @@ while($row=mysql_fetch_assoc($company_detail))
             <td><?php echo '<img src="../../includes/images/logo/'.$row['name'].'.jpg">'?></td>
             <td><?php echo $row['name'];?></td>
             <td><?php echo $row['description'];?></td>
-            <td><a href="editmenu.php?name=<?php echo $row['name'];?>&href=<?php echo $row['href'];?>&status=<?php echo $row['status'];?>">Edit</a></td> 
+            <td><a href="editAssociations.php?name=<?php echo $row['name'];?>&des=<?php echo $row['description'];?>&id=<?php echo $row['uid'];?>">Edit</a></td> 
         <td><button href="#" onClick="updateStatus('deleteMenu','<?php echo $row['uid'];?>')">delete</button></td>
 	</tr>
 <?php
