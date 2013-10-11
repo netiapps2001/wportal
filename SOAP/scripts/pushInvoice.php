@@ -10,21 +10,37 @@ $server = new SoapServer("../requests/pullServiceList.wsdl");
 
 function fetchServiceList($soid)
 {
-	include_once('../../includes/system/kickstart.php');
-//	$DB->enableWSDL();
-	$context = array();
-	$result=$QUERY->formStaticQuery('getcompany',1);
-	$res= $DB->executeQuery($result);
-	while($row=mysql_fetch_assoc($res))
-	{
-		array_push($context,$row['name']);
-	}
-	return $res;
-//	$DB->disableWSDL();
+        //$responseDoc = new DOMDocument();
+        $con = mysql_connect("localhost", "root", "root");
+        $db_selected = mysql_select_db("wealthjunction", $con);
+        $context=array();
+        $result = mysql_query("SELECT * FROM vtiger_service,vtiger_crmentity,vtiger_servicecf JOIN vtiger_crmentity ON vtiger_crmentity.crmid=vtiger_service.serviceid ON vtiger_service.serviceid=vtiger_servicecf.serviceid WHERE vtiger_service.servicecategory LIKE '".$where." OR vtiger_service.servicecategory LIKE 'Both'");
+        return $result;
 
-//	return 'foo bar';
+
+
+        /*if(mysql_num_rows($result)==0){
+                $responseString = "<xml><response><list><totalRecords>0</totalRecords><items></items></list></response></xml>";
+        }
+        else
+        {
+                $totalRecords = mysql_num_rows($result);
+                $responseString = "<xml><response><list><totalRecords>".$totalRecords."</totalRecords><items>";
+                $context=array();
+                while($row=mysql_fetch_assoc($result))
+                {
+                        $a=$row['name'];
+                        array_push($context,$a);
+                //      $responseString .= "<item><name>".$a."</name></item>";
+                }       
+        /*      $responseString .= "</items></list></response></xml>";
+                $responseDoc->loadXML($responseString);
+                //$responseDoc->save('document.xml');
+                return $responseDoc->saveXML();
+                //mysql_close($con);*/
+
 }
-
 $server->AddFunction("fetchServiceList");
 $server->handle();
 ?>
+                 
