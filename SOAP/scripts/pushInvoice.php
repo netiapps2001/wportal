@@ -14,7 +14,7 @@ function fetchServiceList($soid)
         $con = mysql_connect("localhost", "root", "root");
         $db_selected = mysql_select_db("wealthjunction", $con);
         $context=array();
-        $result = mysql_query("SELECT * FROM vtiger_service,vtiger_crmentity,vtiger_servicecf JOIN vtiger_crmentity ON vtiger_crmentity.crmid=vtiger_service.serviceid ON vtiger_service.serviceid=vtiger_servicecf.serviceid WHERE vtiger_service.servicecategory LIKE '".$where." OR vtiger_service.servicecategory LIKE 'Both'");
+        $result = mysql_query("SELECT vtiger_service.*, vtiger__crmentity.*, vtiger_servicecf.* FROM vtiger_service JOIN vtiger_crmentity ON vtiger_crmentity.crmid=vtiger_service.serviceid JOIN vtiger_servicecf ON vtiger_service.serviceid=vtiger_servicecf.serviceid WHERE vtiger_service.servicecategory LIKE '".$soid." OR vtiger_service.servicecategory LIKE 'Both'");
         return $result;
 
 

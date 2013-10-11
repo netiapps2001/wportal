@@ -1,6 +1,8 @@
 <html>
+<script type="text/javascript" src="../../includes/js/validateProducts.js">
+</script>
 <body>
-<form action="../../actions/addAssociation.php" method="POST" enctype="multipart/form-data">
+<form action="../../actions/addAssociation.php" method="POST" enctype="multipart/form-data" onsubmit="return validate();">
 
 
 Name <input type="name" name="name" id="name"/><br />

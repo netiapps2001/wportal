@@ -1,5 +1,6 @@
 <?php
 include_once('../includes/system/globals.php');
+require_once('../includes/system/phpmailer/class.phpmailer.php');
 class IOHelper
 {
 	public function return_bytes($val) {
@@ -52,6 +53,8 @@ class IOHelper
 		}
 		return $retValue;
 	}
+
+
 	public function sendMail($subject,$to)
 	{
 		switch($subject)
@@ -65,30 +68,37 @@ class IOHelper
 					$body ="Your payment has been done successfully";
 					break;
 		}
-//		include_once('../includes/system/kickstart.php');
-		$mail = new PHPMailer();		
-		$mail->IsSMTP();
-		$mail->SMTPAuth = true;
-		$mail->Host = 'smtp.google.com';
-		$mail->Port = 465;
-		$mail->Username = "roopali@netiapps.com";
-		$mail->Password = "roopa123$$";
-		$mail->SetFrom('roopali@netiapps.com', 'roopali');
-		$mail->Subject = $subject;
-		$mail->MsgHTML($body);
-		$mail->AddAddress($to);
-				
-		if(!$mail->Send())
-		{
-			echo ("<p>Message was not sent</p>");
-			echo ("<p>" . $mail->ErrorInfo . "</p>");
-			exit;
-		}		
-		else
-		{
-			echo("<p>Message successfully sent</p>");
-		}
+		
+	$mail = new PHPMailer();
+	$mail->IsSMTP();
+	$mail->CharSet="UTF-8";
+	$mail->SMTPSecure = 'ssl';
+	$mail->Host = 'smtp.google.com';
+	$mail->Port = 25;
+	$mail->Username = 'roopali@netiapps.com';
+	$mail->Password = 'roopa123$$';
+	$mail->SMTPAuth = true;
+	
+	$mail->From = 'roopali@netiapps.com';
+	$mail->FromName = 'roopali';
+	$mail->AddAddress('roopali@netiapps.com');
+	$mail->AddReplyTo('roopali@netiapps.com', 'Information');
+
+	$mail->IsHTML(true);
+	$mail->Subject    = "PHPMailer Test Subject via Sendmail, basic";
+	$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!";
+	$mail->Body    = "Hello";
+	
+	if(!$mail->Send())
+	{	
+		  echo "Mailer Error: " . $mail->ErrorInfo;
 	}
+	else
+	{
+		  echo "Message sent!";
+	}
+}
+
 	 public function isAuthenticated()
         {
                 $active=$this->isActive();
