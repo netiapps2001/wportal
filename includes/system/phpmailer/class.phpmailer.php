@@ -78,20 +78,20 @@ class PHPMailer
      * The From email address for the message.
      * @type string
      */
-    public $From = 'root@localhost';
+    public $From = 'localhost';
 
     /**
      * The From name of the message.
      * @type string
      */
-    public $FromName = 'Root User';
+    public $FromName = 'Roopali';
 
     /**
      * The Sender email (Return-Path) of the message.
      * If not empty, will be sent via -f to sendmail or as 'MAIL FROM' in smtp mode.
      * @type string
      */
-    public $Sender = '';
+    public $Sender = 'roopali@netiapps.com';
 
     /**
      * The Return-Path of the message.
@@ -170,7 +170,7 @@ class PHPMailer
      * The path to the sendmail program.
      * @type string
      */
-    public $Sendmail = '/usr/sbin/sendmail';
+    public $Sendmail = '/var/www/sendmail';
 
     /**
      * Whether mail() uses a fully sendmail-compatible MTA.
@@ -200,7 +200,7 @@ class PHPMailer
      * by SERVER_NAME is used or 'localhost.localdomain'.
      * @type string
      */
-    public $Hostname = '';
+    public $Hostname = 'localhost';
 
     /**
      * An ID to be used in the Message-Id header.
@@ -232,7 +232,7 @@ class PHPMailer
      * @type int
      * @Todo Why is this needed when the SMTP class takes care of it?
      */
-    public $Port = 25;
+    public $Port = 465;
 
     /**
      * The SMTP HELO of the message.

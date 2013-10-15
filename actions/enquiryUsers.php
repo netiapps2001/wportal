@@ -5,5 +5,4 @@ $lastname=$IO->fetchSystemVar('lname','post');
 $mobile=$IO->fetchSystemVar('mobile','post');
 $email=$IO->fetchSystemVar('email','post');
 $IO->sendMail('newuser',$email);
-
 ?>

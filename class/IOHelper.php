@@ -1,6 +1,7 @@
 <?php
 include_once('../includes/system/globals.php');
-require_once('../includes/system/phpmailer/class.phpmailer.php');
+include_once('../includes/system/phpmailer/class.phpmailer.php');
+include_once('../includes/system/phpmailer/class.smtp.php');
 class IOHelper
 {
 	public function return_bytes($val) {
@@ -73,25 +74,25 @@ class IOHelper
 	$mail->IsSMTP();
 	$mail->CharSet="UTF-8";
 	$mail->SMTPSecure = 'ssl';
-	$mail->Host = 'smtp.google.com';
-	$mail->Port = 25;
+	$mail->Host = 'smtp.gmail.com';
+	$mail->Port = 465;
 	$mail->Username = 'roopali@netiapps.com';
 	$mail->Password = 'roopa123$$';
 	$mail->SMTPAuth = true;
 	
 	$mail->From = 'roopali@netiapps.com';
 	$mail->FromName = 'roopali';
-	$mail->AddAddress('roopali@netiapps.com');
-	$mail->AddReplyTo('roopali@netiapps.com', 'Information');
+	$mail->AddAddress($to);
+	$mail->AddReplyTo($to, 'Information');
 
 	$mail->IsHTML(true);
-	$mail->Subject    = "PHPMailer Test Subject via Sendmail, basic";
+	$mail->Subject    = $subject;
 	$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!";
-	$mail->Body    = "Hello";
+	$mail->Body    = $body;
 	
 	if(!$mail->Send())
 	{	
-		  echo "Mailer Error: " . $mail->ErrorInfo;
+	  echo "Mailer Error: " . $mail->ErrorInfo;
 	}
 	else
 	{

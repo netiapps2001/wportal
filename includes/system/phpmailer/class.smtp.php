@@ -46,7 +46,7 @@ class SMTP
     /**
      * The SMTP port to use if one is not specified.
      */
-    const DEFAULT_SMTP_PORT = 25;
+    const DEFAULT_SMTP_PORT = 465;
 
     /**
      * The PHPMailer SMTP Version number.
@@ -62,7 +62,7 @@ class SMTP
      * @deprecated This is only ever ued as default value, so should be a constant
      * @see SMTP::DEFAULT_SMTP_PORT
      */
-    public $SMTP_PORT = 25;
+    public $SMTP_PORT = 465;
 
     /**
      * SMTP reply line ending
