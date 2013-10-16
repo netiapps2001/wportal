@@ -44,10 +44,15 @@ class SQLQuery{
 			break;
 			
 			case "fetchCompanyDetail":
-				$sqlString = "select *from upload where status='$where'";
+				$sqlString = "select *from company where status='$where'";
 				break;
+			
+			case "fetchServiceDetail":
+                                $sqlString = "select * from services where status='$where'";
+                                break;
+				
 
-			case "editProduct":
+  			case "editProduct":
                                  $name=$where[0];
                                  $des=$where[1];
                                  $id = $where[2];

@@ -1,0 +1,438 @@
+@charset "utf-8";
+/* CSS Document */
+
+body{
+	margin:0px;
+	padding:0px;
+	font-family:'Open Sans',Helvetica,sans-serif;
+}
+
+#container{
+	margin:auto;
+	width:100%;
+	border-top:5px solid #4fc3d0;
+}
+
+#main_container{
+	margin:auto;
+	width:990px;
+}
+
+#header_top{
+	color: #333333;
+    font-family:'Open Sans',Helvetica,sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: right;
+	padding-top:10px;
+	padding-bottom:10px;
+	border-bottom:1px dotted #CCC;
+}
+
+.red{
+	color:#c03e24;
+	font-weight:600;
+}
+
+#header_middle{
+	width:100%;
+}
+
+#logo{
+	width:208px;
+	height:83px;
+	float:left;
+}
+
+#header_block{
+	width:100%;
+	float:left;
+}
+
+#menu_block{
+	width:100%;
+	border-radius:5px; 
+	background:#4b4b4b;
+	float:left;
+}
+
+#menu_block ul{
+	font-family:'Open Sans',Helvetica,sans-serif;
+    font-size: 14px;
+    margin: auto;
+    padding: 10px;
+}
+
+#menu_block ul li{
+	display:inline;
+	list-style-type:none;
+	padding:0px 10px;
+	border-right:1px solid #CCC;
+}
+
+#menu_block ul li a{
+	color:#FFF;
+	text-decoration:none;
+}
+
+.banner_container{
+background-position: 0px top;
+width:1000px;
+padding-left:0px;
+margin: 0px auto;
+}
+
+#wowslider-container1 {
+	Z-INDEX: 100; MAX-WIDTH: 960px; MARGIN: 0px auto; BORDER-TOP-STYLE: none; ZOOM: 1; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; POSITION: relative; TEXT-ALIGN: left; BORDER-BOTTOM-STYLE: none; float:left;
+}
+* HTML #wowslider-container1 {
+	WIDTH: 960px
+}
+#wowslider-container1 UL {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; WIDTH: 10000%; PADDING-TOP: 0px; LIST-STYLE-TYPE: none; POSITION: relative; float:left;
+}
+#wowslider-container1 UL LI {
+	FONT-SIZE: 0px; FLOAT: left; WIDTH: 1%; LINE-HEIGHT: 0
+}
+#wowslider-container1 .ws_images {
+	border-radius: 6px 6px 6px 6px;
+    float: left;
+    height: 100%;
+    left: 0;
+    margin-top: 4px;
+    overflow: hidden;
+    position: relative;
+    top: 0;
+    width: 990px;
+}
+#wowslider-container1 .ws_images A {
+	DISPLAY: block; WIDTH: 100%; COLOR: transparent
+}
+#wowslider-container1 .ws_images IMG {
+	BORDER-RIGHT: 0px; BORDER-TOP: 0px; MAX-WIDTH: none; BORDER-LEFT: 0px; WIDTH: 100%; BORDER-BOTTOM: 0px
+}
+#wowslider-container1 A {
+	BORDER-TOP-STYLE: none; BORDER-RIGHT-STYLE: none; BORDER-LEFT-STYLE: none; TEXT-DECORATION: none; BORDER-BOTTOM-STYLE: none; outline: none
+}
+#wowslider-container1 .ws_bullets {
+	FONT-SIZE: 0px; Z-INDEX: 70; FLOAT: left; POSITION: absolute
+}
+#wowslider-container1 .ws_bullets DIV {
+	FLOAT: left; POSITION: relative
+}
+#wowslider-container1 A.wsl {
+	DISPLAY: none
+}
+#wowslider-container1 .ws_bullets {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+
+
+
+#wowslider-container1 .ws-title DIV {
+	FONT-SIZE: 12px; PADDING-TOP: 5px
+}
+#wowslider-container1 .ws_bullets {
+	LEFT: 50%; BOTTOM: 0px
+}
+#wowslider-container1 .ws_bullets DIV {
+	LEFT: -50%
+}
+#wowslider-container1 UL {
+	animation: wsBasic 54s infinite; -moz-animation: wsBasic 54s infinite; -webkit-animation: wsBasic 54s infinite
+}
+#wowslider-container1 {
+	MARGIN: 0px auto 17px
+}
+#wowslider-container1 .ws_shadow {
+	Z-INDEX: -1;  LEFT: -1.04%; WIDTH: 102.08%; POSITION: absolute; TOP: -2.5%; HEIGHT: 107.22%
+}
+UNKNOWN {
+	FILTER: ""; BACKGROUND-IMAGE: url(./bg.png); BACKGROUND-REPEAT: no-repeat; background-size: 100%
+}
+#wowslider-container1 .ws_bullets A IMG {
+	BORDER-RIGHT: #fff 4px solid; BORDER-TOP: #fff 4px solid; DISPLAY: block; LEFT: -120px; VISIBILITY: hidden; MAX-WIDTH: none; BORDER-LEFT: #fff 4px solid; BOTTOM: 20px; TEXT-INDENT: 0px; BORDER-BOTTOM: #fff 4px solid; POSITION: absolute; border-radius: 5px; -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); -moz-border-radius: 5px
+}
+#wowslider-container1 .ws_bullets A:hover IMG {
+	VISIBILITY: visible
+}
+#wowslider-container1 .ws_bulframe DIV DIV {
+	OVERFLOW: visible; POSITION: relative; HEIGHT: 90px
+}
+#wowslider-container1 .ws_bulframe DIV {
+	LEFT: 0px; OVERFLOW: hidden; WIDTH: 240px; POSITION: relative; BACKGROUND-COLOR: #fff
+}
+
+#wowslider-container1 .ws_bulframe SPAN {
+	DISPLAY: block; BACKGROUND: url(./triangle.png); LEFT: 120px; MARGIN-LEFT: -4px; WIDTH: 15px; BOTTOM: -10px; POSITION: absolute; HEIGHT: 6px
+}
+
+#heading_content{
+	background: url("images/heading_bg.jpg") no-repeat scroll center center rgba(0, 0, 0, 0);
+    color: #666666;
+    float: left;
+    font-family: 'Open Sans',Helvetica,sans-serif;
+    font-size: 15px;
+    font-style: normal;
+    height: 74px;
+    margin: auto;
+    padding: 20px 64px 0 49px;
+    text-align: center;
+    width: 92%;
+}
+
+#tab1{
+	background:#f9ffff;
+	float:left;
+	height:auto;
+}
+
+#tabs{
+  overflow: hidden;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+#tabs li{
+  float: left;
+  margin: 0 -0.5em 0 0;
+  font-size:15px;
+}
+
+#tabs a{
+  background: linear-gradient(to bottom, #505050, #505050) repeat scroll 0 0 #505050;
+    border-radius: 5px 0 0 0;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+    color: #FFF;
+    float: left;
+    font-size: 15px;
+    height: 15px;
+    padding: 20px 176px;
+    position: relative;
+    text-decoration: none;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+	text-transform:uppercase;
+}
+
+#tabs a:hover,
+#tabs a:hover::after,
+#tabs a:focus,
+#tabs a:focus::after{
+  background: #505050;
+  font-size:15px;
+}
+
+#tabs a:focus{
+  outline: 0;
+}
+
+#tabs a::after{
+  content:'';
+  position:absolute;
+  font-size:15px;
+  z-index: 1;
+  top: 0;
+  right: -.5em;  
+  bottom: 0;
+  width: 1em;
+  background:#505050;
+  box-shadow: 2px 2px 2px rgba(0,0,0,.4);
+  border-radius: 0 5px 0 0;  
+}
+
+#tabs #current a,
+#tabs #current a::after{
+  background: #666;
+  z-index: 3;
+  font-size:15px;
+}
+
+#tab3 h2{
+    font-size: 14px;
+	color:#ffa94f;
+	font-weight:600;
+	text-align:left;
+	padding-left: 15px;
+    padding-top: 13px;
+}
+
+
+#tab3 p{
+	
+    font-size: 13px;
+	text-align:left;
+	padding-left: 15px;
+	padding-right:14px;
+}
+
+#tab_container{
+	width:100%;
+	float:left;
+	margin-top:30px;
+}
+
+#product_block{
+	width:100%;
+	float:left;
+	font-family:'Open Sans',Helvetica,sans-serif;
+	margin-top:18px;
+}
+
+#product_block #product_head{
+	background: none repeat scroll 0 0 #f3f3f3;
+    border: 1px solid #EEEEEE;
+    color: #666;
+    padding: 10px;
+    width: 50%;
+	font-weight:600;
+}
+
+#product_block #product_head span{
+	background: none repeat scroll 0 0 #51C3D1;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px 5px 5px 5px;
+    float: right;
+    font-size: 13px;
+	color:#333;
+    padding: 3px 20px;
+	font-weight:normal;
+}
+
+#product_disp{
+	width:100%;
+	float:left;
+	border-spacing:10px;
+	font-size:14px;
+}
+
+#product_disp tr{
+	width:50%;
+}
+
+#product_disp tr td{
+	vertical-align:top;
+}
+
+#product_dis table{
+	border-spacing:5px;
+}
+
+#product_disp tr td h1{
+	font-size:16px;
+	color:#51c3d1;
+	margin:0px;
+}
+
+#product_disp tr td p{
+	font-size:13px;
+	margin:0px;
+	padding:3px;
+}
+
+.enq{
+	background: none repeat scroll 0 0 #51C3D1;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px 5px 5px 5px;
+    float: right;
+    font-size: 13px;
+	color:#333;
+    padding: 3px 20px;
+	font-weight:normal;
+	margin-right:10px;
+}
+
+hr{
+	border:2px solid #f6f9f9;
+}
+
+.buy{
+	background: none repeat scroll 0 0 #51C3D1;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px 5px 5px 5px;
+    float: right;
+    font-size: 13px;
+	color:#333;
+    padding: 3px 20px;
+	font-weight:normal;
+}
+
+.price{
+	color:#51C3D1;
+	font-weight:600;
+}
+
+#footer{
+	width:100%;
+	background:#333;
+	height:60px;
+	float:left;
+	font-size:12px;
+	color:#FFF;
+}
+
+#footer_block{
+	width:998px;
+	margin:auto;
+	padding-top:10px;
+}
+
+#footer_left{
+	width:42%;
+	float:left;
+}
+
+#footer_right{
+	width:40%;
+	float:right;
+	text-align:right;
+}
+
+#header_right{
+	width:78%;
+	float:right;
+}
+
+#login_block{
+	float:right;
+}
+
+#crm_login{
+	width:100%;
+	float:right;
+	text-align:right;
+}
+
+#crm_login a{
+	background: none repeat scroll 0 0 #666;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px 5px 5px 5px;
+    float: right;
+    font-size: 13px;
+	color:#FFF;
+    padding: 3px 20px;
+	font-weight:normal;
+	text-decoration:none;
+	
+}
+
+#login_block ul{
+	font-size:14px;
+}
+
+#login_block ul li{
+	display:inline;
+	text-align:right;
+}
+
+#login_block ul li:after{
+	content:" /";
+}
+
+
+
+
+
+
+	
