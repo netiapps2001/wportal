@@ -2,6 +2,7 @@
 
 <?php
 include_once('../../includes/system/kickstart.php');
+include("functions.php");
 
 
       $result= $QUERY->formStaticQuery("fetchCompanyDetail",1);
@@ -10,6 +11,17 @@ include_once('../../includes/system/kickstart.php');
       $service_result= $QUERY->formStaticQuery("fetchServiceDetail",1);
       $service_detail =$DB->executeQuery($service_result);
 
+if($_REQUEST['command']=='add' && $_REQUEST['productid']>0){
+
+		$pid=$_REQUEST['productid'];
+
+		addtocart($pid,1);
+
+		header("location:shoppingcart.php");
+
+		exit();
+
+	}
 ?>
 
 
@@ -216,41 +228,40 @@ to the requirement of every need of our customer and provide them the best servi
 
           			<div id="content"> 
 
-   					  <div id="tab1">
+   					  <div id="tab1" class="tab_contents">
 
-<table id="product_block">
+			<table id="product_block">
 
-                              <tr>
+                               <td id="product_head">PRODUCTS </td>
 
-                                <td id="product_head">PRODUCTS </td>
+                        </table>
 
-                                <td id="product_head">SERVICES </td>
+                        <div id="product_disp">
 
-                              </tr>
-
-                          </table>
-
-                          <table id="product_disp">
-
-                  <body>
-<?php
+                 <?php
 while($row=mysql_fetch_assoc($company_detail))
 {
 ?>
-         
-                            <tr>
-                              <td colspan="2"><h1><?php echo $row['name'];?></h1></td>
-			    </tr>
+       
+		    <div id="product_name">
+				<?php echo $row['name'];?>
+			    </div>
 
-                            <tr>
+                            <div id="product_image">
+                        	<?php echo '<img src="../../includes/images/logo/product-logo/'.$row['name'].'.jpg">'?>
+			    </div>
 
-                        <td><?php echo '<img src="../../includes/images/logo/product-logo/'.$row['name'].'.jpg">'?></td>
-                        <td><p><?php echo $row['description'];?></p><span class="enq"><a href="productDetails.php?name=<?php echo $row['name'];?>&des=<?php echo $row['description'];?>&id=<?php echo $row['uid'];?>">Enquiry</a></span></td><hr/>
+                       	    <div id="product_des">
+				<?php echo substr($row['description'],0,50);?>
+	                    </div>
 
-     
-                            </tr>
+		            <div class="enq">
+				<a href="productDetails.php?name=<?php echo $row['name'];?>&des=<?php echo $row['description'];?>&id=<?php echo $row['uid'];?>">Enquiry</a>
+			   </div>     
+                           
 <?php } ?>
 	                  
+</div>
 
 <?php
 while($row=mysql_fetch_assoc($service_detail))
@@ -258,35 +269,35 @@ while($row=mysql_fetch_assoc($service_detail))
 ?>
 
 
+<td id="product_head">SERVICES </td>
+<div id="service_disp">
 
-<table id="service_disp">
+                            <div id="service_name">
+				<?php echo $row['name'];?>
+			    </div>
 
-                            <tr>
-                            <td id="service" colspan="2"><h1><?php echo $row['name'];?></h1></td>
-                            </tr>
 
-                            <tr>
-                        <td id="service"><?php echo '<img src="../../includes/images/logo/service-logo/'.$row['name'].'.jpg">'?><span class="price">PRICE:</span><?php echo $row['price'];?></td>
-                        <td id="service"><p><?php echo $row['description'];?></p><span class="buy"><a href="#">Buy Now</a></span></td>
+				<div id="service_image">
+					<?php echo '<img src="../../includes/images/logo/service-logo/'.$row['name'].'.jpg">'?>
+				</div>
+
+			<span class="price">PRICE:</span><?php echo $row['price'];?>
+
+                        	<div id="service_des">
+					<?php echo substr($row['description'],0,50);?>
+				</div>
+			<span class="buy">
+			<a href="serviceDetails.php?name=<?php echo $row['name'];?>&des=<?php echo $row['description'];?>&pid=<?php echo $row['serial'];?>&price=<?php echo $row['price']?>">Buy Now</a></span>
 <?php
 }?>
 
-                            </tr>
-
-                            <tr>
-			      <td colspan="2"><hr /></td>
-                              <td colspan="2"><hr /></td>
-                            </tr>
-
-
-                          </table>
-				</div>
+                           </div>
 
 					<script>
 
                     $(document).ready(function() {
 
-                        $("#content div").hide(); // Initially hide all content
+                        $(".tab_contents").hide(); // Initially hide all content
 
                         $("#tabs li:first").attr("id","current"); // Activate first tab
 
@@ -298,7 +309,7 @@ while($row=mysql_fetch_assoc($service_detail))
 
                             e.preventDefault();        
 
-                            $("#content div").hide(); //Hide all content
+                            $(".tab_contents").hide(); //Hide all content
 
                             $("#tabs li").attr("id",""); //Reset id's
 

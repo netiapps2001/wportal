@@ -1,4 +1,4 @@
-<DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -96,6 +96,24 @@ to the requirement of every need of our customer and provide them the best servi
 
 <?php
 include_once('../../includes/system/kickstart.php');
+include("functions.php");
+$result= $QUERY->formStaticQuery("fetchCompanyDetail",1);
+      $company_detail =$DB->executeQuery($result);
+
+if($_REQUEST['command']=='add' && $_REQUEST['productid']>0){
+
+		$pid=$_REQUEST['productid'];
+
+		addtocart($pid,1);
+
+		header("location:shoppingcart.php");
+
+		exit();
+
+	}
+
+
+
 
 $name=$_GET['name'];
 $description=$_GET['des'];
@@ -106,15 +124,34 @@ $id = $_GET['id'];
 <html>
 <head>
 <script type="text/javascript" src="../../includes/js/validateProducts.js">
+function addtocart(pid){
+
+		document.form1.productid.value=pid;
+
+		document.form1.command.value='add';
+
+		document.form1.submit();
+
+	}
 </script>
 </head>
 <body>
 
-	<input type="hidden" id="userid" name="id" value="<?php echo $id;?>">
-        <label><?php echo $name;?></label><br>
+	<form name="form1">
+
+	<input type="hidden" name="productid" />
+
+    <input type="hidden" name="command" />
+
+</form>
+
+
+       <label><?php echo $name;?></label><br>
         <img src="../../includes/images/logo/product-logo/<?php echo $name?>.jpg"></label><br>
         <label><?php echo $description;?></label>
-       
+	<?php echo $row['serial']?>
+	<input type="button" value="Add to Cart" onclick="addtocart(<?php echo $row['serial']?>)" />
+
 	<div class="download_form">
 	<form method="post" action="../../actions/enquiryUsers.php" onsubmit="return validateEnquiry()">
 	<table>

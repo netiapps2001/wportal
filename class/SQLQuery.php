@@ -44,7 +44,7 @@ class SQLQuery{
 			break;
 			
 			case "fetchCompanyDetail":
-				$sqlString = "select *from company where status='$where'";
+				$sqlString = "select *from products where status='$where'";
 				break;
 			
 			case "fetchServiceDetail":
