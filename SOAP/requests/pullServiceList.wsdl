@@ -8,7 +8,8 @@
   </types>
   
   <message name="fetchServiceList">
-    <part name="salesorderid" type="tns:getName" />
+    <part name="category" type="tns:getName" />
+    <part name="type" type="tns:getName" />
   </message>
   
   <message name="fetchServiceListResponse">
@@ -37,7 +38,7 @@
   
   <service name="HelloService">
     <port name="HelloPort" binding="tns:HelloBinding">
-	  <soap:address location="http://localhost/wealthportal/wealth11101011/SOAP/scripts/pushInvoice.php" />
+	  <soap:address location="http://localhost/wportal/SOAP/scripts/pushInvoice.php" />
 	</port>
   </service>
   
