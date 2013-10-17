@@ -11,17 +11,7 @@ include("functions.php");
       $service_result= $QUERY->formStaticQuery("fetchServiceDetail",1);
       $service_detail =$DB->executeQuery($service_result);
 
-if($_REQUEST['command']=='add' && $_REQUEST['productid']>0){
 
-		$pid=$_REQUEST['productid'];
-
-		addtocart($pid,1);
-
-		header("location:shoppingcart.php");
-
-		exit();
-
-	}
 ?>
 
 
@@ -256,7 +246,8 @@ while($row=mysql_fetch_assoc($company_detail))
 	                    </div>
 
 		            <div class="enq">
-				<a href="productDetails.php?name=<?php echo $row['name'];?>&des=<?php echo $row['description'];?>&id=<?php echo $row['uid'];?>">Enquiry</a>
+				<a href="productDetails.php?name=<?php echo $row['name'];?>&des=<?php echo $row['description'];?>&pid=<?php echo $row['serial'];?>&price=<?php echo $row['price']?>">Buy Now</a></span>
+
 			   </div>     
                            
 <?php } ?>

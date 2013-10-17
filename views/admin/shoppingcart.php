@@ -1,8 +1,8 @@
 <?php
-	include_once('../../includes/system/kickstart.php');
+//	include_once('../../includes/system/kickstart.php');
 
 	include("functions.php");
-
+	include("includes/db.php");
 	
 
 	if($_REQUEST['command']=='delete' && $_REQUEST['pid']>0){
@@ -117,7 +117,7 @@
 
     	<h1 align="center">Your Shopping Cart</h1>
 
-    <input type="button" value="Continue Shopping" onclick="window.location='products.php'" />
+    <input type="button" value="Continue Shopping" onclick="window.location='index.php'" />
 
     </div>
 
