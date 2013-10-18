@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<definitions name="HelloWorld" targetNamespace="urn:HelloWorld" xmlns:tns="urn:HelloWorld"  xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:Hello">
+      <xsd:element name="getName" type="xsd:string" />
+	  <xsd:element name="HelloResponse" type="xsd:string" />	 	  
+	</xsd:schema>			
+  </types>
+  
+  <message name="fetchServiceList">
+    <part name="fname" type="tns:getName" />
+    <part name="lname" type="tns:getName" />
+    <part name="org" type="tns:getName" />
+    <part name="email" type="tns:getName" />
+    <part name="phone" type="tns:getName" />
+    <part name="type" type="tns:getName" />
+  </message>
+  
+  <message name="fetchServiceListResponse">
+    <part name="return" type="tns:HelloResponse" />
+  </message>  
+  
+  <portType name="HelloPort">
+    <operation name="fetchServiceList">
+	  <input message="tns:fetchServiceList" />
+	  <output message="tns:fetchServiceListResponse" />
+	</operation>
+  </portType>
+  
+  <binding name="HelloBinding" type="tns:HelloPort">
+    <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http" />
+	  <operation name="fetchServiceList">
+	    <soap:operation soapAction="urn:HelloAction" />
+		<input>
+		  <soap:body use="encoded" namespace="urn:Hello" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />		  
+		</input>
+		<output>
+		  <soap:body use="encoded" namespace="urn:Hello" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />		  
+		</output>
+	  </operation>
+  </binding>
+  
+  <service name="HelloService">
+    <port name="HelloPort" binding="tns:HelloBinding">
+	  <soap:address location="http://192.168.1.10/~anupssh/SOAP/scripts/saveLeads.php" />
+	</port>
+  </service>
+  
+</definitions>
