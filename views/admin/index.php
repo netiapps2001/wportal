@@ -2,7 +2,7 @@
 
 <?php
 include_once('../../includes/system/kickstart.php');
-include("functions.php");
+include("../../actions/functions.php");
 
 
       $result= $QUERY->formStaticQuery("fetchCompanyDetail",1);
@@ -24,13 +24,13 @@ include("functions.php");
 
 <title>Wealth Junction</title>
 
-<link type="text/css" rel="stylesheet" href="style.css" />
+<link type="text/css" rel="stylesheet" href="../css/style.css" />
 
-<script type="text/javascript" src="chromejs/chrome.js"></script>
+<script type="text/javascript" src="../../includes/js/chromejs/chrome.js"></script>
 
-<SCRIPT src="jquery-1.4.2.min.js" type=text/javascript></SCRIPT>
+<SCRIPT src="../../includes/js/jquery-1.4.2.min.js" type=text/javascript></SCRIPT>
 
-<SCRIPT src="jquery.jcarousel.min.js" type=text/javascript></SCRIPT>
+<SCRIPT src="../../includes/js/jquery.jcarousel.min.js" type=text/javascript></SCRIPT>
 
 <SCRIPT type=text/javascript>
 
@@ -108,7 +108,7 @@ jQuery(document).ready(function() {
 
     		<div id="header_top">Need Help? <span class="red">Call Us 1800-254- 606060</span></div>
 
-    		<div id="header_middle"><div id="logo"><img src="images/logo.png" /></div></div>
+    		<div id="header_middle"><div id="logo"><img src="../../includes/images/index_images/logo.png" /></div></div>
 
             <div id="header_right">
 
@@ -168,15 +168,15 @@ jQuery(document).ready(function() {
 
                     <ul>
 
-                     	<li><img src="images/banner1.jpg"  id=wows0 ></li>
+                     	<li><img src="../../includes/images/index_images/banner1.jpg"  id=wows0 ></li>
 
-                        <li><img src="images/banner2.png" id=wows1 ></li>
+                        <li><img src="../../includes/images/index_images/banner2.png" id=wows1 ></li>
 
-                        <li><img src="images/banner3.jpg" id=wows2 ></li>
+                        <li><img src="../../includes/images/index_images/banner3.jpg" id=wows2 ></li>
 
-                        <li><img src="images/banner1.jpg" id=wows3 ></li>
+                        <li><img src="../../includes/images/index_images/banner1.jpg" id=wows3 ></li>
 
-                        <li><img src="images/banner2.png" id=wows4 ></li>
+                        <li><img src="../../includes/images/index_images/banner2.png" id=wows4 ></li>
 
                      </ul>
 
@@ -184,9 +184,9 @@ jQuery(document).ready(function() {
 
                </div>
 
-               <script src="slider.js" type="text/javascript"></script>
+               <script src="../../includes/js/slider.js" type="text/javascript"></script>
 
-               <script src="script.js" type="text/javascript"></script>
+               <script src="../../includes/js/script.js" type="text/javascript"></script>
 
 			</div>
 
@@ -220,7 +220,7 @@ to the requirement of every need of our customer and provide them the best servi
 
    					  <div id="tab1" class="tab_contents">
 
-			<table id="product_block">
+				<table id="product_block">
 
                                <td id="product_head">PRODUCTS </td>
 
@@ -228,61 +228,64 @@ to the requirement of every need of our customer and provide them the best servi
 
                         <div id="product_disp">
 
-                 <?php
-while($row=mysql_fetch_assoc($company_detail))
-{
-?>
+        <?php
+			while($row=mysql_fetch_assoc($company_detail))
+				{
+		?>
        
 		    <div id="product_name">
 				<?php echo $row['name'];?>
-			    </div>
+		    </div>
 
-                            <div id="product_image">
-                        	<?php echo '<img src="../../includes/images/logo/product-logo/'.$row['name'].'.jpg">'?>
-			    </div>
+            <div id="product_image">
+               	<?php echo '<img src="../../includes/images/logo/product-logo/'.$row['name'].'.jpg">'?>
+			</div>
 
-                       	    <div id="product_des">
+            <div id="product_des">
 				<?php echo substr($row['description'],0,50);?>
-	                    </div>
+	        </div>
 
-		            <div class="enq">
+		    <div class="enq">
 				<a href="productDetails.php?name=<?php echo $row['name'];?>&des=<?php echo $row['description'];?>&pid=<?php echo $row['serial'];?>&price=<?php echo $row['price']?>">Buy Now</a></span>
-
-			   </div>     
+     	   </div>     
                            
-<?php } ?>
+	  <?php } ?>
 	                  
-</div>
+	</div>
 
-<?php
-while($row=mysql_fetch_assoc($service_detail))
-{
-?>
+		<?php
+			while($row=mysql_fetch_assoc($service_detail))
+				{
+		?>
 
 
-<td id="product_head">SERVICES </td>
-<div id="service_disp">
+		<td id="service_disp">SERVICES </td>
+			<div id="sservice_disp">
 
-                            <div id="service_name">
-				<?php echo $row['name'];?>
-			    </div>
+				<div id="service_name">
+					<?php echo $row['name'];?>
+				</div>
 
 
 				<div id="service_image">
 					<?php echo '<img src="../../includes/images/logo/service-logo/'.$row['name'].'.jpg">'?>
 				</div>
 
-			<span class="price">PRICE:</span><?php echo $row['price'];?>
-
-                        	<div id="service_des">
+				<span class="price">PRICE:</span>
+				<div id="price">
+					<?php echo $row['price'];?>
+				</div>
+                     
+                <div id="service_des">
 					<?php echo substr($row['description'],0,50);?>
 				</div>
-			<span class="buy">
-			<a href="serviceDetails.php?name=<?php echo $row['name'];?>&des=<?php echo $row['description'];?>&pid=<?php echo $row['serial'];?>&price=<?php echo $row['price']?>">Buy Now</a></span>
-<?php
-}?>
-
-                           </div>
+		
+				<span class="buy">
+					<a href="serviceDetails.php?name=<?php echo $row['name'];?>&des=<?php echo $row['description'];?>&pid=<?php echo $row['serial'];?>&price=<?php echo $row['price']?>">Buy Now</a></span>
+		<?php
+		}?>
+		
+		</div>
 
 					<script>
 
