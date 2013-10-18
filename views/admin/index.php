@@ -1,17 +1,18 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <?php
+
 include_once('../../includes/system/kickstart.php');
 include("../../actions/functions.php");
 
-
-      $result= $QUERY->formStaticQuery("fetchCompanyDetail",1);
-      $company_detail =$DB->executeQuery($result);
-
-      $service_result= $QUERY->formStaticQuery("fetchServiceDetail",1);
-      $service_detail =$DB->executeQuery($service_result);
-
-
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+ini_set("soap.wsdl_cache_enabled", "0");
+$client = new soapClient("http://192.168.1.10/~anupssh/SOAP/requests/pullServiceList.wsdl");
+$info = $client->__call('fetchServiceList', array('Individual','Product'));// Salesorder ID and Invoice No
+$result= $QUERY->formStaticQuery("fetchCompanyDetail",1);
+$company_detail =$DB->executeQuery($result);
+$service_result= $QUERY->formStaticQuery("fetchServiceDetail",1);
+$service_detail =$DB->executeQuery($service_result);
 ?>
 
 
@@ -218,74 +219,160 @@ to the requirement of every need of our customer and provide them the best servi
 
           			<div id="content"> 
 
-   					  <div id="tab1" class="tab_contents">
+   				 <div id="tab1" class="tab_contents">
 
-				<table id="product_block">
+				
+                       		 <div id="product_disp">
+				 <H1>PRODUCTS</H1>
 
-                               <td id="product_head">PRODUCTS </td>
+		<?php
 
-                        </table>
+		    for($i =0 ; $i<$info['totalRecords'] ; $i++){
 
-                        <div id="product_disp">
+		//	print_r($info[$i]['pname']);
 
-        <?php
-			while($row=mysql_fetch_assoc($company_detail))
-				{
 		?>
-       
+       			<div class="product_wrapper">
 		    <div id="product_name">
-				<?php echo $row['name'];?>
+				<?php print_r($info[$i]['pname']);?>
 		    </div>
 
-            <div id="product_image">
-               	<?php echo '<img src="../../includes/images/logo/product-logo/'.$row['name'].'.jpg">'?>
-			</div>
+	            <div id="product_image">
+             			<?php echo '<img src="../../includes/images/logo/product-logo/'.$info[$i]['pname'].'.jpg">'?> 
+		   </div>
 
-            <div id="product_des">
-				<?php echo substr($row['description'],0,50);?>
-	        </div>
+        	    <div id="product_des">
+				<?php print_r (substr($info[$i]['desc'],0,50));?>
+	           </div>
 
 		    <div class="enq">
-				<a href="productDetails.php?name=<?php echo $row['name'];?>&des=<?php echo $row['description'];?>&pid=<?php echo $row['serial'];?>&price=<?php echo $row['price']?>">Buy Now</a></span>
-     	   </div>     
+				<a href="productDetails.php?name=<?php echo ($info[$i]['pname']);?>&des=<?php echo ($info[$i]['desc']);?>&pid=<?php echo ($info[$i]['pid']);?>">Enquiry</a></span>
+     	   </div></div>
                            
 	  <?php } ?>
 	                  
 	</div>
 
+	
+	                <div id="service_disp">
+                        <H1>SERVICES </H1>
+
+
 		<?php
-			while($row=mysql_fetch_assoc($service_detail))
-				{
+		
+		$info = $client->__call('fetchServiceList', array('Individual','Service'));// Salesorder ID and Invoice No
+		
+
+		for($i=0 ; $i < $info['totalRecords']; $i++){
+
+		
 		?>
 
-
-		<td id="service_disp">SERVICES </td>
-			<div id="sservice_disp">
-
+				<div class="service_wrapper">
 				<div id="service_name">
-					<?php echo $row['name'];?>
+				
 				</div>
-
-
+				
 				<div id="service_image">
-					<?php echo '<img src="../../includes/images/logo/service-logo/'.$row['name'].'.jpg">'?>
 				</div>
 
-				<span class="price">PRICE:</span>
 				<div id="price">
-					<?php echo $row['price'];?>
+					Price:<?php echo  $info[$i]['price'];?>
 				</div>
                      
-                <div id="service_des">
-					<?php echo substr($row['description'],0,50);?>
+               			 <div id="service_des">
+					<?php echo substr($info[$i]['desc'],0,50);?>
 				</div>
 		
 				<span class="buy">
 					<a href="serviceDetails.php?name=<?php echo $row['name'];?>&des=<?php echo $row['description'];?>&pid=<?php echo $row['serial'];?>&price=<?php echo $row['price']?>">Buy Now</a></span>
+</div>	
+
+<?php
+	}?>
+	
+</div></div>
+
+
+<div id="tab2" class="tab_contents">
+
+
+		<div id="product_disp">
+				 <H1>PRODUCTS</H1>
+
+<?php
+$info = $client->__call('fetchServiceList', array('Corporate','Product'));// Salesorder ID and Invoice No
+
+		    for($i =0 ; $i<$info['totalRecords'] ; $i++){
+
+
+		?>
+		<div class="product_wrapper">
+		    <div id="product_name">
+				<?php print_r($info[$i]['pname']);?>
+		    </div>
+
+	            <div id="product_image">
+             			<?php echo '<img src="../../includes/images/logo/product-logo/'.$info[$i]['pname'].'.jpg">'?> 
+		   </div>
+
+        	    <div id="product_des">
+				<?php print_r (substr($info[$i]['desc'],0,50));?>
+	           </div>
+
+		    <div class="enq">
+				<a href="productDetails.php?name=<?php echo ($info[$i]['pname']);?>&des=<?php echo ($info[$i]['desc']);?>&pid=<?php echo ($info[$i]['pid']);?>">Enquiry</a></span>
+     	   </div></div>
+                           
+	  <?php } ?>
+	                  
+	</div>
+
+		<div id="service_disp">
+                        <H1>SERVICES </H1>
+
+
 		<?php
-		}?>
 		
-		</div>
+		$info = $client->__call('fetchServiceList', array('Corporate','Service'));// Salesorder ID and Invoice No
+		
+
+		for($i=0 ; $i < $info['totalRecords']; $i++){
+
+		
+		?>
+
+				<div class="service_wrapper">
+				<div id="service_name">
+				
+				</div>
+				
+				<div id="service_image">
+				</div>
+
+				<div id="price">
+					Price:<?php echo  $info[$i]['price'];?>
+				</div>
+                     
+               			 <div id="service_des">
+					<?php echo substr($info[$i]['desc'],0,50);?>
+				</div>
+		
+				<span class="buy">
+					<a href="serviceDetails.php?name=<?php echo $row['name'];?>&des=<?php echo $row['description'];?>&pid=<?php echo $row['serial'];?>&price=<?php echo $row['price']?>">Buy Now</a></span>
+</div>	
+
+<?php
+	}?>
+	
+</div></div>
+
+
+
+</div>
+</div>
+</div>
+		
 
 					<script>
 

@@ -1,3 +1,4 @@
+
 function validate()
 {
 	var name=document.getElementById('name').value;
@@ -38,6 +39,8 @@ function validateEnquiry()
 	var pos= fname.search(/^[A-Z a-z]+$/);
 	var lname=document.getElementById('lname').value;
         var pos1= lname.search(/^[A-Z a-z]+$/);
+	var org=document.getElementById('org').value;
+	var orgpos= org.search(/^[A-Z a-z]+$/);
 	var mobile=document.getElementById('mobile').value;
         var mob= mobile.search(/^[0-9]{10}$/);
 	var email=document.getElementById('email').value;
@@ -53,6 +56,11 @@ function validateEnquiry()
                document.getElementById("lastname").innerHTML=("enter correct lastname");
 		return false;
         }
+	else if(orgpos!=0 || org==" " || org=="null")
+	{
+		document.getElementById("organisation").innerHTML=("Inappropriate organisation");
+		return false;
+	}
 	else if(mob!=0 || mobile==" " || mobile=="null")
         {
                 document.getElementById("num").innerHTML=("enter correct mobile number");

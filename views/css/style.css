@@ -292,6 +292,23 @@ UNKNOWN {
 	font-weight:600;
 }
 
+#service_block{
+	width:100%;
+	float:left;
+	font-family:'Open Sans',Helvetica,sans-serif;
+	margin-top:18px;
+}
+
+#service_block #service_head{
+	background: none repeat scroll 0 0 #f3f3f3;
+    border: 1px solid #EEEEEE;
+    color: #666;
+    padding: 10px;
+    width: 50%;
+	font-weight:600;
+}
+
+
 #product_block #product_head span{
 	background: none repeat scroll 0 0 #51C3D1;
     border: 1px solid #d5d5d5;
@@ -304,17 +321,19 @@ UNKNOWN {
 }
 
 #product_disp{
-	width:100%;
+	width:45%;
 	float:left;
 	border-spacing:10px;
 	font-size:14px;
 }
 
 #service_disp{
-	width:100%;
-	float:left;
-	border-spacing:10px;
-	font-size:14px;
+	width: 45%;
+float: left;
+border-spacing: 10px;
+margin-left: 10px;
+font-size: 14px;
+
 }
 
 #product_disp tr{
@@ -342,16 +361,18 @@ UNKNOWN {
 }
 
 .enq{
-	background: none repeat scroll 0 0 #51C3D1;
-    border: 1px solid #d5d5d5;
-    border-radius: 5px 5px 5px 5px;
-    float: right;
-    font-size: 13px;
-	color:#333;
-    padding: 3px 20px;
-	font-weight:normal;
-	margin-right:10px;
+background: none repeat scroll 0 0 rgb(0, 144, 224);
+border: 1px solid #d5d5d5;
+border-radius: 5px 5px 5px 5px;
+float: right;
+font-size: 13px;
+color: #333;
+padding: 3px 20px;
+font-weight: normal;
+margin-right: 10px;
 }
+
+.enq a{ text-decoration:none; color:#fff;}
 
 hr{
 	border:2px solid #f6f9f9;
@@ -442,7 +463,36 @@ hr{
 
 
 
+.tab_contents{width:100%; }
 
+.product_wrapper,.service_wrapper{
+	width: 95%;
+	float: left;
+	border: solid 1px #e7e7e7;
+	padding: 8px;
+	margin-bottom: 8px;
+}
 
+.product_wrapper:hover{ border: solid 1px #0093B8;}
 
-	
+.service_wrapper:hover{ border: solid 1px #0093B8;}
+
+#product_name , #service_name{
+	color: #51C3D1;
+    font-size: 16px;
+    margin: 0;
+    }
+    
+ #product_des , #service_des{
+	font-size: 13px;
+	margin: 0;
+	padding: 3px;
+	width: 280px;
+	height: 100px;
+	float: left;
+}
+
+#product_image , #service_image{ width:135px; float:left;}
+
+.enq_form{
+float:right;}
