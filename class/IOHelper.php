@@ -4,9 +4,10 @@ include_once('../includes/system/phpmailer/class.phpmailer.php');
 include_once('../includes/system/phpmailer/class.smtp.php');
 class IOHelper
 {
-	public function return_bytes($val) {
-		 $val = trim($val);
-   		 $last = strtolower($val[strlen($val)-1]);
+	public function return_bytes($val) 
+	{
+		$val = trim($val);
+   		$last = strtolower($val[strlen($val)-1]);
     		switch($last) {
 	        // The 'G' modifier is available since PHP 5.1.0
 	        	case 'g':
@@ -19,23 +20,28 @@ class IOHelper
 		return $val;
 	}
 	
-
-	public function setErrorMessage($msg){
+	public function setErrorMessage($msg)
+	{
 		$this->pushError($msg);
 	}
 
-	public function pushError(){
+	public function pushError()
+	{
 		GLOBAL $errorArray;
 		array_push($errorArray,$msg);
 		$this->setSession('errorSession',$errorArray);
 	}
 
-	public function setSession($var,$val){
+	public function setSession($var,$val)
+	{
 		$_SESSION[$var] = $val;
 	}
-	public function fetchSystemVar($var,$method){
+
+	public function fetchSystemVar($var,$method)
+	{
 		
-		switch($method) {
+		switch($method) 
+		{
 			case 'post':
 				$retValue = $_POST[$var];
 				break;
@@ -54,8 +60,8 @@ class IOHelper
 		}
 		return $retValue;
 	}
-
-
+	
+	//function to send mail 
 	public function sendMail($subject,$to)
 	{
 		switch($subject)
@@ -79,17 +85,14 @@ class IOHelper
 	$mail->Username = 'roopali@netiapps.com';
 	$mail->Password = 'roopa123$$';
 	$mail->SMTPAuth = true;
-	
 	$mail->From = 'roopali@netiapps.com';
 	$mail->FromName = 'roopali';
 	$mail->AddAddress($to);
 	$mail->AddReplyTo($to, 'Information');
-
 	$mail->IsHTML(true);
-	$mail->Subject    = $subject;
-	$mail->AltBody    = "To view the message, please use an HTML compatible email viewer!";
-	$mail->Body    = $body;
-	
+	$mail->Subject = $subject;
+	$mail->AltBody = "To view the message, please use an HTML compatible email viewer!";
+	$mail->Body = $body;
 	if(!$mail->Send())
 	{	
 	  echo "Mailer Error: " . $mail->ErrorInfo;
@@ -99,7 +102,7 @@ class IOHelper
 		  echo "Message sent!";
 	}
 }
-
+	//function to check if the user is active or inactive using session
 	 public function isAuthenticated()
         {
                 $active=$this->isActive();
@@ -109,7 +112,7 @@ class IOHelper
                         if($time)
                         {
 				$nowtime=time();
-                              $this->setSessionTimedOut($nowtime);
+                              	$this->setSessionTimedOut($nowtime);
                         }
                         else
                         {
@@ -156,3 +159,4 @@ class IOHelper
 	}    
 }
 ?>
+

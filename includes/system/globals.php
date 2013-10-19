@@ -20,7 +20,7 @@ $PORTALPASS = 'root';
 $errorArray = array();
 
 $PORTALDB = 'wealthportal';
-$VERSIONDIR = 'wealth18101306/';
+$VERSIONDIR = 'wealth19100957/';
 //$SERVERPATH = '192.168.1.10/~anupssh/wealthportal/';
 //$ROOTDIR = $SERVERPATH;
 //$VERSIONDIR = '';

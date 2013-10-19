@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -18,36 +21,18 @@
 
 <SCRIPT type=text/javascript>
 
-
-
 function mycarousel_initCallback(carousel)
-
 {
-
     // Disable autoscrolling if the user clicks the prev or next button.
-
-    carousel.buttonNext.bind('click', function() {
-
+	carousel.buttonNext.bind('click', function() {
         carousel.startAuto(0);
-
     });
-
-
-
     carousel.buttonPrev.bind('click', function() {
-
-        carousel.startAuto(0);
-
+    carousel.startAuto(0);
     });
-
-
-
     // Pause autoscrolling if the user moves with the cursor over the clip.
-
     carousel.clip.hover(function() {
-
-        carousel.stopAuto();
-
+    carousel.stopAuto();
     }, function() {
 
         carousel.startAuto();
@@ -318,11 +303,7 @@ else{
 			}
 			
 ?>
-
-
-
-
-					<script>
+<script>
 
                     $(document).ready(function() {
 

@@ -1,6 +1,6 @@
 <?php
 include_once('../includes/system/kickstart.php');
-
+//login details for admin 
 $username=$_POST['uname'];
 $password=$_POST['password'];
 $error=array();
@@ -41,8 +41,6 @@ $num=mysql_num_rows($result);
 	<?
 
          session_write_close();
-
-//        include("../views/admin/login.php");
   }
 
 ?>

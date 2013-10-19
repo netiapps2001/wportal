@@ -10,37 +10,40 @@ class SQLQuery{
 			case "pullService" : 
 				$sqlString = "SELECT * FROM vtiger_service,vtiger_crmentity,vtiger_servicecf JOIN vtiger_crmentity ON vtiger_crmentity.crmid=vtiger_service.serviceid ON vtiger_service.serviceid=vtiger_servicecf.serviceid WHERE vtiger_service.servicecategory LIKE '".$where." OR vtiger_service.servicecategory LIKE 'Both'";
 				break;
-			case "insertMenu":
-		
+
+			case "insertMenu":	
 				 $name=$where[0];
 				 $href=$where[1];
 				 $status=$where[2];
-				
 				 $sqlString = "insert into menu(name,href,status) values('$name','$href','$status')";
 				break;
+
 			case "displayMenu":
 				$sqlString="select *from menu where status='$where'";
 				break;	
+
 			case "editMenu":
 				echo $name=$where[0];
 				echo $href=$where[1];
 				echo $status=$where[2];
 				$sqlString = "update menu set name='$name' and href='$href' and status='$status'";
 				break;
+
 			case "deleteMenu":
 				$sqlString ="update upload set status=0 where uid='$where'";
 				break;
+
 			case "login":
 				$username=$where[0];
 				$password=$where[1];
 				$sqlString="select *from login where username='$username' and password='$password'";
 				break;
+
 			case "upload":
 				$name=$where[0];
 				$des=$where[1];
 				$status=$where[2];
-				$sqlString="insert into upload values('','$name','$des','$status')";
-		
+				$sqlString="insert into upload values('','$name','$des','$status')";		
 			break;
 			
 			case "fetchCompanyDetail":
@@ -51,7 +54,6 @@ class SQLQuery{
                                 $sqlString = "select * from services where status='$where'";
                                 break;
 				
-
   			case "editProduct":
                                  $name=$where[0];
                                  $des=$where[1];
@@ -61,6 +63,7 @@ class SQLQuery{
 
 			case "getcompany":
 				$sqlString="select name from upload where status='1'";
+				break;
 	}
 		return $sqlString;
 
