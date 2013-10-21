@@ -1,8 +1,8 @@
 <?php
-//	include_once('../../includes/system/kickstart.php');
+	include_once('../../includes/system/kickstart.php');
 
-	include("functions.php");
-	include("includes/db.php");
+	include("../actions/functions.php");
+	
 	session_start();
         if(isset($_SESSION['id']))
         {
@@ -21,6 +21,9 @@
 	if($_REQUEST['command']=='delete' && $_REQUEST['pid']>0){
 
 		remove_product($_REQUEST['pid']);
+		/*$arr=array($id,$pid);
+		$sql= $QUERY->formStaticQuery("removeproduct",$arr);
+		$DB->executeQuery($sql);*/
 
 	}
 
@@ -139,6 +142,10 @@
     	<table border="0" cellpadding="5px" cellspacing="1px" style="font-family:Verdana, Geneva, sans-serif; font-size:11px; background-color:#E1E1E1" width="100%">
 
     	<?php
+			$pid= $_GET['id'];
+			$name=$_GET['name'];
+			$price=$_GET['price'];
+			$qty=$_GET['qty'];
 
 			if(is_array($_SESSION['cart'])){
 
@@ -152,7 +159,7 @@
 
 					$q=$_SESSION['cart'][$i]['qty'];
 
-					$pname=get_product_name($pid);
+					$pname=$name;
 
 					if($q==0) continue;
 
@@ -160,11 +167,11 @@
 
             		<tr bgcolor="#FFFFFF"><td><?php echo $i+1?></td><td><?php echo $pname?></td>
 
-                    <td>$ <?php echo get_price($pid)?></td>
+                    <td>$ <?php echo $price?></td>
 
                     <td><input type="text" name="product<?php echo $pid?>" value="<?php echo $q?>" maxlength="3" size="2" /></td>                    
 
-                    <td>$ <?php echo get_price($pid)*$q?></td>
+                    <td>$ <?php echo $price*$q?></td>
 
                     <td><a href="javascript:del(<?php echo $pid?>)">Remove</a></td></tr>
 
@@ -174,7 +181,11 @@
 
 			?>
 
-				<tr><td><b>Order Total: $<?php echo get_order_total()?></b></td><td colspan="5" align="right"><input type="button" value="Clear Cart" onclick="clear_cart()"><input type="button" value="Update Cart" onclick="update_cart()"><input type="button" value="Place Order" onclick="window.location='billing.php'"></td></tr>
+				<tr><td><b>Order Total: $<?php echo get_order_total($price);?></b></td>
+				<td colspan="5" align="right">
+					<input type="button" value="Clear Cart" onclick="clear_cart()"><input type="button" value="Update Cart" onclick="update_cart()">
+					<input type="button" value="Place Order" onclick="window.location='billing.php'">
+				</td></tr>
 
 			<?php
 

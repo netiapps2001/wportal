@@ -61,6 +61,22 @@ class SQLQuery{
 
 			case "getcompany":
 				$sqlString="select name from upload where status='1'";
+				break;
+			
+			case "addcart":
+				$pid=$where[0];
+				$item=$where[1];
+				$qty=$where[2];
+				$price=$where[3];
+				$uid=$where[4];
+				$sqlString="insert into `$uid` values('','$pid','$item','$qty','$price')";
+				break;
+				
+			case "removeproduct":
+					$uid=$where[0];
+					$pid=$where[1];
+				$sqlString="delete from `$uid` where pid='$pid'";
+				break;
 	}
 		return $sqlString;
 

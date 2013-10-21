@@ -168,9 +168,9 @@ function addtocart(pid){
 
 <form name="form1">
 
-     <input type="hidden" name="productid" />
+     <input type="text" name="productid" />
 
-    <input type="hidden" name="command" />
+    <input type="text" name="command" />
 
 </form>
 
@@ -205,34 +205,39 @@ function addtocart(pid){
         <span class="price">PRICE:</span><?php echo $price;?>
 	
 		<div id="buy">
-			<input type="button" value="Buy Now" onclick="addtocart(<?php echo $sid?>)" />	
-		</div>
+		<input type="button" value="Buy Now" onclick="addtocart(<?php echo $sid?>)" />	
 	</div>
-	</div>
-	<!-- code to fetch images-->
-		<?php
-			$dir ='../includes/images/logo/service-logo/';
-			$file_display = array('gif','jpg');
+</div>
+</div>
 
-				if(file_exists($dir)==false)
-				{
-					echo "not found";
-				}
-					else{
-						$dir_contents = scandir($dir);
-							
-			foreach($dir_contents as $file){
-				$file_type = end(explode('.',$file));
-				
-				
-				if(in_array($file_type , $file_display)==true){
-					
-					echo '<img src ="'.$dir.''/''.$file.'"/>';
-					}
-					}
-					}
-					
-		?>
+<?php
+           
+            $info = $client->__call('fetchServiceList', array('Individual','Service'));// Salesorder ID and Invoice No   
+
+            for($i=0 ; $i < $info['totalRecords']; $i++){   
+            ?>
+
+                <div class="service_details">
+                <div id="service_name">
+                    <?php echo $info[$i]['sname'];?>   
+                </div>
+               
+                <div id="service_image">
+                    <?php echo '<img src="../includes/images/logo/product-logo/Term Insurance.jpg">'?>
+                </div>
+               
+                <div id="price">Price:
+                     <?php echo  $info[$i]['price'];?>
+                </div>
+       
+                <span class="buy">
+                    <a href="serviceDetails.php?type=<?php echo "Individual";?>&sid=<?php echo $info[$i]['sid'];?>&price=<?php echo $info[$i]['price'];?>&des=<?php echo $info[$i]['desc'];?>">Buy Now</a></span>
+                </div>   
+
+        <?php
+            }
+        ?>
+
        
 <SCRIPT src="../includes/js/tab.js" type=text/javascript></SCRIPT>
 

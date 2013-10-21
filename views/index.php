@@ -36,9 +36,9 @@
 		<title>Wealth Junction</title>
 		<link type="text/css" rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="../includes/js/chromejs/chrome.js"></script>
-		<SCRIPT src="../includes/js/jquery-1.4.2.min.js" type=text/javascript></SCRIPT>
-		<SCRIPT src="../includes/js/jquery.jcarousel.min.js" type=text/javascript></SCRIPT>
-		<SCRIPT src="../includes/js/banner.js" type=text/javascript></SCRIPT>
+		<SCRIPT src="../includes/js/jquery-1.4.2.min.js" type="text/javascript"></SCRIPT>
+		<SCRIPT src="../includes/js/jquery.jcarousel.min.js" type="text/javascript"></SCRIPT>
+		<SCRIPT src="../includes/js/banner.js" type="text/javascript"></SCRIPT>
 
 	</head>
 
@@ -271,14 +271,14 @@ to the requirement of every need of our customer and provide them the best servi
             <H1>SERVICES </H1>
 
 
-			<?php
-			
-			$info = $client->__call('fetchServiceList', array('Corporate','Service'));// Salesorder ID and Invoice No
-			
+		<?php
+		
+		$info = $client->__call('fetchServiceList', array('Corporate','Service'));// Salesorder ID and Invoice No
+		
 
-			for($i=0 ; $i < 6; $i++){
+		for($i=0 ; $i < 6; $i++){
 
-			
+		
 			?>
 
 				<div class="service_wrapper">

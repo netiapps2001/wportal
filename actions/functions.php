@@ -20,13 +20,13 @@
 		}
 		$_SESSION['cart']=array_values($_SESSION['cart']);
 	}
-	function get_order_total(){
+	function get_order_total($price1){
 		$max=count($_SESSION['cart']);
 		$sum=0;
 		for($i=0;$i<$max;$i++){
 			$pid=$_SESSION['cart'][$i]['productid'];
 			$q=$_SESSION['cart'][$i]['qty'];
-			$price=get_price($pid);
+			$price=$price1;
 			$sum+=$price*$q;
 		}
 		return $sum;
