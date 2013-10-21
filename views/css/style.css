@@ -321,17 +321,18 @@ UNKNOWN {
 }
 
 #product_disp{
-	width:45%;
+	width:48%;
 	float:left;
 	border-spacing:10px;
 	font-size:14px;
+	margin-left: 15px;
 }
 
 #service_disp{
-	width: 45%;
+	width: 48%;
 float: left;
 border-spacing: 10px;
-margin-left: 10px;
+margin-left: 15px;
 font-size: 14px;
 
 }
@@ -379,14 +380,15 @@ hr{
 }
 
 .buy{
-	background: none repeat scroll 0 0 #51C3D1;
-    border: 1px solid #d5d5d5;
-    border-radius: 5px 5px 5px 5px;
-    float: right;
-    font-size: 13px;
-	color:#333;
-    padding: 3px 20px;
-	font-weight:normal;
+	background: none repeat scroll 0 0 rgb(0, 144, 224);
+border: 1px solid #d5d5d5;
+border-radius: 5px 5px 5px 5px;
+float: right;
+font-size: 13px;
+color: #333;
+padding: 3px 20px;
+font-weight: normal;
+margin-right: 10px;
 }
 
 .price{
@@ -477,18 +479,33 @@ hr{
 
 .service_wrapper:hover{ border: solid 1px #0093B8;}
 
+.service_wrapper .buy a{
+text-decoration:none;
+color:#fff;
+}
+
 #product_name , #service_name{
 	color: #51C3D1;
     font-size: 16px;
     margin: 0;
     }
     
- #product_des , #service_des{
+ #product_des{
 	font-size: 13px;
 	margin: 0;
 	padding: 3px;
 	width: 280px;
 	height: 100px;
+	float: left;
+	
+}
+
+#service_des{
+	font-size: 13px;
+	margin: 0;
+	padding: 3px;
+	width: 280px;
+	height: 84px;
 	float: left;
 }
 
@@ -496,3 +513,90 @@ hr{
 
 .enq_form{
 float:right;}
+
+.prod_details #prod_name{
+	color: #014A9D;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 33px;
+    font-weight: bold;
+    padding:0px 0px 12px;
+}
+
+
+.prod_details #prod_desc{
+	width: 500px;
+	float: left;
+	color: #6C6C6C;
+    font-family: "Calibri",Arial,sans-serif;
+    font-size: 16px;
+   
+}
+
+.prod_details #prod_image{
+width:150px; float:left;
+}
+
+.prod_det_wrapper{ width:990px; height:auto; margin-bottom:15px; float:left;}
+.serv_det_wrapper{ width:990px; height:auto; margin-bottom:15px; float:left;}
+
+.prod_details{ 
+float:left; width:650px; 
+border-right: 1px dashed #CCCCCC;
+height:296px;
+}
+.serv_details{ 
+float:left;
+width:650px; 
+height:260px;
+}
+
+.serv_details #serv_name{
+	color: #014A9D;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 33px;
+    font-weight: bold;
+    padding:0px 0px 12px;
+}
+
+
+.serv_details #serv_desc{
+	width: 500px;
+	float: left;
+	color: #6C6C6C;
+    font-family: "Calibri",Arial,sans-serif;
+    font-size: 16px;
+   
+}
+
+.serv_details #serv_image{
+width:150px; float:left;
+}
+
+.download_form input{width:200px; height:30px; padding:4px; border:solid 1px #ccc; }
+
+.download_form .submit_button {
+ width:100px; height:auto; float:left; background:#333; color:#fff; font-size:13px; font-weight:bold; padding:4px 20px; margin-top: 20px;
+ }
+ 
+ .download_form .reset_button { 
+ width:100px; position:absolute; height:auto; float:right; background:#333; color:#fff; font-size:13px; font-weight:bold; padding:4px 20px; margin-top: 20px;
+ }
+ 
+ .download_form select{
+	background-color: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.075) inset;
+    font-size: 13px;
+    margin-left: 5px;
+    padding: 7px;
+    position: absolute;
+    text-indent: 0;
+    transition: border 0.2s linear 0s, box-shadow 0.2s linear 0s;
+    width: 209px;
+    
+    }
+#buy{
+padding: 13px 146px;
+margin-top:25px;
+}
