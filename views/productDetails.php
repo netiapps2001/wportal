@@ -1,3 +1,20 @@
+<?php
+session_start();
+        if(isset($_SESSION['id']))
+        {
+            $id=$_SESSION['id'];
+            mysql_query("create table `$id`(id int(3)primary key auto_increment,pid varchar(5) not null,item varchar(20) not null,quantity varchar(3) not null,price float not null)");
+        }
+        else
+        {
+                $id=$_SESSION['id'];
+                $unique_key = substr(md5(rand(0, 1000000)), 0, 10);
+                $sessionid=$unique_key;
+                $_SESSION['id']=$sessionid;
+                mysql_query("create table `$id`(id int(3)primary key auto_increment,pid varchar(5) not null,item varchar(20) not null,quantity varchar(3) not null,price float not null)");
+        }
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
