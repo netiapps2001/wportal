@@ -189,7 +189,7 @@ to the requirement of every need of our customer and provide them the best servi
 				   </div>
 
 					<div class="enq">
-						<a href="productDetails.php?name=<?php echo ($info[$i]['pname']);?>&des=<?php echo ($info[$i]['desc']);?>&pid=<?php echo ($info[$i]['pid']);?>">Enquiry</a></span>
+						<a href="productDetails.php?name=<?php echo ($info[$i]['pname']);?>&type=<?php echo "Individual";?>&des=<?php echo ($info[$i]['desc']);?>&pid=<?php echo ($info[$i]['pid']);?>">Enquiry</a></span>
 					</div></div>
 							   
 		  <?php } ?>
@@ -209,23 +209,23 @@ to the requirement of every need of our customer and provide them the best servi
 
 				<div class="service_wrapper">
 				<div id="service_name">
-					<?php echo "Service1";?>	
+					<?php echo $info[$i]['sname'];?>	
 				</div>
 				
 				<div id="service_image">
 					<?php echo '<img src="../includes/images/logo/product-logo/Term Insurance.jpg">'?>
 				</div>
                      
-               	<div id="service_des">
+		               	<div id="service_des">
 					<?php echo" At Wealth Junction we have dedicated well-trained team";?>
 				</div>
 
 				<div id="price">Price:
-                     <?php echo  $info[$i]['price'];?>
-                </div>
+                    			 <?php echo  $info[$i]['price'];?>
+               			 </div>
 		
 				<span class="buy">
-					<a href="serviceDetails.php?type=<?php echo "service";?>&sid=<?php echo $info[$i]['sid'];?>&price=<?php echo $info[$i]['price'];?>&des=<?php echo $info[$i]['desc'];?>">Buy Now</a></span>
+					<a href="serviceDetails.php?name=<?php echo $info[$i]['sname'];?>&type=<?php echo "Service";?>&sid=<?php echo $info[$i]['sid'];?>&price=<?php echo $info[$i]['price'];?>&des=<?php echo $info[$i]['desc'];?>">Buy Now</a></span>
 				</div>	
 
 		<?php
@@ -283,7 +283,7 @@ to the requirement of every need of our customer and provide them the best servi
 
 				<div class="service_wrapper">
 				<div id="service_name">
-					<?php echo  "Cor-Service";?>
+					<?php echo $info[$i]['sname'];?>
 				</div>
 				
 				<div id="service_image">
@@ -299,7 +299,7 @@ to the requirement of every need of our customer and provide them the best servi
 				</div>
 		
 				<span class="buy">
-					<a href="serviceDetails.php?type=<?php echo "Service";?>&sid=<?php echo $info[$i]['sid'];?>&price=<?php echo $info[$i]['price'];?>&des=<?php echo $info[$i]['desc'];?>">Buy Now</a></span>
+					<a href="serviceDetails.php?name=<?php echo $info[$i]['sname'];?>&type=<?php echo "Service";?>&sid=<?php echo $info[$i]['sid'];?>&price=<?php echo $info[$i]['price'];?>&des=<?php echo $info[$i]['desc'];?>">Buy Now</a></span>
 				</div>	
 
 		<?php

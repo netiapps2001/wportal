@@ -13,7 +13,16 @@ session_start();
                 $_SESSION['id']=$sessionid;
                 mysql_query("create table `$id`(id int(3)primary key auto_increment,pid varchar(5) not null,item varchar(20) not null,quantity varchar(3) not null,price float not null)");
         }
-
+	
+		include_once('../includes/system/kickstart.php');
+		error_reporting(E_ALL);
+		ini_set('display_errors', '1');
+		ini_set("soap.wsdl_cache_enabled", "0");
+		$client = new soapClient("http://192.168.1.10/~anupssh/SOAP/requests/pullServiceList.wsdl");
+		$result= $QUERY->formStaticQuery("fetchCompanyDetail",1);
+		$company_detail =$DB->executeQuery($result);
+		$service_result= $QUERY->formStaticQuery("fetchServiceDetail",1);
+		$service_detail =$DB->executeQuery($service_result);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -39,7 +48,7 @@ session_start();
 			<div id="header_block">
     		<div id="header_top">Need Help? <span class="red">Call Us 1800-254- 606060</span></div>
     		<div id="header_middle"><div id="logo"><img src="../includes/images/index_images/logo.png" /></div></div>
-            <div id="header_right">
+       		<div id="header_right">
             	<div id="login_block">
                 	<ul>
                     	<li>LOGIN</li>
@@ -114,13 +123,9 @@ session_start();
 <head>
 
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<?php
-include_once("../actions/functions.php");
-include_once('../includes/system/kickstart.php');
-$service_result= $QUERY->formStaticQuery("fetchServiceDetail",1);
-      $service_detail =$DB->executeQuery($service_result);
+	<?php     
 
-include_once("../actions/functions.php");
+	include_once("../actions/functions.php");
 
 	if($_REQUEST['command']=='add' && $_REQUEST['productid']>0){
 
@@ -171,7 +176,7 @@ function addtocart(pid){
 
 
 <?php
-
+ $name=$_GET['name'];
  $description=$_GET['des'];
  $sid = $_GET['sid'];
  $price = $_GET['price'];
@@ -190,7 +195,7 @@ function addtocart(pid){
 		</div>
 	
         <div id="serv_name">
-			<?php echo "SERVICE1";?>
+			<?php echo "$name";?>
 		</div>
         
         <div id="serv_desc">
