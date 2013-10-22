@@ -1,39 +1,72 @@
 <?php
-	include_once('../../includes/system/kickstart.php');
+
+	include_once('../includes/system/kickstart.php');
 
 	include("../actions/functions.php");
+
 	
+
 	session_start();
-        if(isset($_SESSION['id']))
-        {
-            $id=$_SESSION['id'];
-            mysql_query("create table `$id`(id int(3)primary key auto_increment,pid varchar(5) not null,item varchar(20) not null,quantity varchar(3) not null,price float not null)");
-        }
-        else
-        {
-                $id=$_SESSION['id'];
-                $unique_key = substr(md5(rand(0, 1000000)), 0, 10);
-                $sessionid=$unique_key;
-                $_SESSION['id']=$sessionid;
-                mysql_query("create table `$id`(id int(3)primary key auto_increment,pid varchar(5) not null,item varchar(20) not null,quantity varchar(3) not null,price float not null)");
-        }
 
-	if($_REQUEST['command']=='delete' && $_REQUEST['pid']>0){
+    if(isset($_SESSION['id']))
 
-		remove_product($_REQUEST['pid']);
-		/*$arr=array($id,$pid);
+    {
+
+         $id=$_SESSION['id'];
+
+         mysql_query("create table `$id`(id int(3)primary key auto_increment,pid varchar(5) not null,item varchar(20) not null,quantity varchar(3) not null,price float not null)");
+
+    }
+
+    else
+
+    {
+
+         $id=$_SESSION['id'];
+
+         $unique_key = substr(md5(rand(0, 1000000)), 0, 10);
+
+         $sessionid=$unique_key;
+
+         $_SESSION['id']=$sessionid;
+
+         mysql_query("create table `$id`(id int(3)primary key auto_increment,pid varchar(5) not null,item varchar(20) not null,quantity varchar(3) not null,price float not null)");
+
+    }
+
+
+
+	
+
+	if($_REQUEST['command']=='delete' && $_REQUEST['pid']>0)
+
+	{
+
+		$pid=$_REQUEST['pid'];
+
+		$arr=array($id,$pid);
+
 		$sql= $QUERY->formStaticQuery("removeproduct",$arr);
-		$DB->executeQuery($sql);*/
+
+		$DB->executeQuery($sql);
 
 	}
 
-	else if($_REQUEST['command']=='clear'){
+	else if($_REQUEST['command']=='clear')
+
+	{
 
 		unset($_SESSION['cart']);
 
+		$clear=$QUERY->formStaticQuery("cleardata",$id);
+
+		$DB->executeQuery($clear);
+
 	}
 
-	else if($_REQUEST['command']=='update'){
+	else if($_REQUEST['command']=='update')
+
+	{
 
 		$max=count($_SESSION['cart']);
 
@@ -142,50 +175,74 @@
     	<table border="0" cellpadding="5px" cellspacing="1px" style="font-family:Verdana, Geneva, sans-serif; font-size:11px; background-color:#E1E1E1" width="100%">
 
     	<?php
-			$pid= $_GET['id'];
-			$name=$_GET['name'];
-			$price=$_GET['price'];
-			$qty=$_GET['qty'];
 
-			if(is_array($_SESSION['cart'])){
+			$pid= $_GET['id'];
+
+			$name=$_GET['item'];
+
+			$price=$_GET['price'];
+
+			if(is_array($_SESSION['cart']))
+
+			{
 
             	echo '<tr bgcolor="#FFFFFF" style="font-weight:bold"><td>Serial</td><td>Name</td><td>Price</td><td>Qty</td><td>Amount</td><td>Options</td></tr>';
 
 				$max=count($_SESSION['cart']);
 
-				for($i=0;$i<$max;$i++){
+				//for($i=0;$i<$max;$i++)
 
+				//{
+					$i=0;
 					$pid=$_SESSION['cart'][$i]['productid'];
-
 					$q=$_SESSION['cart'][$i]['qty'];
+					$arr=array($id,$pid);
+					$getname=$QUERY->formStaticQuery("productname",$arr);
+					$pname=$DB->executeQuery($getname);
+					$item=$pname;
+					$amt=0;
+					$qty=1;
+					while($row=mysql_fetch_assoc($item))
 
-					$pname=$name;
+					{
 
-					if($q==0) continue;
+		?>
+
+		<tr bgcolor="#FFFFFF">
+
+			<td><?php echo ++$i;?></td>
+
+			<td><?php echo $row['item'];?></td>
+
+			<td>$ <?php echo $row['price'];?></td>
+
+			<td><input type="text" name="product<?php echo $pid?>" value="<?php echo $qty?>" maxlength="3" size="2" /></td>                    
+
+            <td>$ <?php $pr=$row['price'];$cost=$pr*$q;echo $cost;?></td>
+
+            <td><a href="javascript:del(<?php echo $pid?>)">Remove</a></td></tr>
+
+			<?php
+
+				$amt+=$cost;
+
+			}		
+
+	
 
 			?>
 
-            		<tr bgcolor="#FFFFFF"><td><?php echo $i+1?></td><td><?php echo $pname?></td>
+			<tr><td><b>Order Total: $<?php echo $amt;?></b></td>
 
-                    <td>$ <?php echo $price?></td>
+			<td colspan="5" align="right">
 
-                    <td><input type="text" name="product<?php echo $pid?>" value="<?php echo $q?>" maxlength="3" size="2" /></td>                    
+			<input type="button" value="Clear Cart" onclick="clear_cart()">
 
-                    <td>$ <?php echo $price*$q?></td>
+			<input type="button" value="Update Cart" onclick="update_cart()">
 
-                    <td><a href="javascript:del(<?php echo $pid?>)">Remove</a></td></tr>
+			<input type="button" value="Place Order" onclick="window.location='billing.php'">
 
-            <?php					
-
-				}
-
-			?>
-
-				<tr><td><b>Order Total: $<?php echo get_order_total($price);?></b></td>
-				<td colspan="5" align="right">
-					<input type="button" value="Clear Cart" onclick="clear_cart()"><input type="button" value="Update Cart" onclick="update_cart()">
-					<input type="button" value="Place Order" onclick="window.location='billing.php'">
-				</td></tr>
+		</td></tr>
 
 			<?php
 

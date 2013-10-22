@@ -69,14 +69,41 @@ class SQLQuery{
 				$qty=$where[2];
 				$price=$where[3];
 				$uid=$where[4];
-				$sqlString="insert into `$uid` values('','$pid','$item','$qty','$price')";
+				$sqlString="insert into `$uid`(id,pid,item,quantity,price) select *from(select '','$pid','$item','$qty','$price') as tmp where not exists(select pid from `$uid` where pid='$pid')limit 1";
 				break;
 				
 			case "removeproduct":
 					$uid=$where[0];
 					$pid=$where[1];
-				$sqlString="delete from `$uid` where pid='$pid'";
+			echo $sqlString="delete from `$uid` where pid='$pid'";
 				break;
+
+			case "productname":
+					$id=$where[0];
+					$pid=$where[1];
+					$sqlString="select * from `$id` ";
+					break;
+
+			case "getamount":
+				$sqlString="select quantity,price from `$where`";
+				break;
+
+			case "pidExist":
+				$uid=$where[0];
+				$pid=$where[1];
+				$sqlString="select *from `$uid` where pid='$pid'";
+				break;
+
+			case "cleardata":
+				$sqlString="TRUNCATE TABLE `$where`";
+				break;
+
+			case "updateQty";
+				$uid=$where[0];
+				$pid=$where[1];
+				$qty=$where[2];
+				$sqlString="update `$uid` set quantity='$qty' where pid='$pid'";
+				break; 
 	}
 		return $sqlString;
 

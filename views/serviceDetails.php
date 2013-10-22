@@ -1,5 +1,6 @@
 <?php
 session_start();
+include_once("../includes/system/kickstart.php");
         if(isset($_SESSION['id']))
         {
             $id=$_SESSION['id'];
@@ -121,24 +122,24 @@ session_start();
 
 			</div>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<?php     
 
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<?php     
+include_once("../actions/functions.php");
+if($_REQUEST['command']=='add' && $_REQUEST['productid']>0)
+{
+   	$pid=$_REQUEST['productid'];
+	$item=$_REQUEST['item'];
+	$price1=$_REQUEST['price'];
+	addtocart($pid,1);
+	$val=array($id,$pid);
+	$arr=array($pid,$item,1,$price1,$id);
+	$sql=$QUERY->formStaticQuery("addcart",$arr);
+	$DB->executeQuery($sql);
 
-	include_once("../actions/functions.php");
-
-	if($_REQUEST['command']=='add' && $_REQUEST['productid']>0){
-
-	   	$pid=$_REQUEST['productid'];
-
-		addtocart($pid,1);
-
-		header("location:shoppingcart.php");
-
-		exit();
-
-	}
-
+	header("location:shoppingcart.php?id=$pid&item=$item&price=$price1");
+	exit();
+}
 ?>
 
 
@@ -152,14 +153,14 @@ session_start();
 <SCRIPT src="jquery.jcarousel.min.js" type=text/javascript></SCRIPT>
 <SCRIPT type=text/javascript>
 
-function addtocart(pid){
-		document.form1.productid.value=pid;
-
-		document.form1.command.value='add';
-
-		document.form1.submit();
-
-	}
+function addtocart(pid,item,price)
+{
+	document.form1.productid.value=pid;
+	document.form1.item.value=item;
+	document.form1.price.value=price;
+	document.form1.command.value='add';
+	document.form1.submit();
+}
 
 </SCRIPT>
 
@@ -167,11 +168,10 @@ function addtocart(pid){
 <body>
 
 <form name="form1">
-
-     <input type="text" name="productid" />
-
-    <input type="text" name="command" />
-
+        <input type="hidden" name="productid" />
+	<input type="hidden" name="item"/>
+	<input type="hidden" name="price"/>
+        <input type="hidden" name="command" />
 </form>
 
 
@@ -205,7 +205,7 @@ function addtocart(pid){
         <span class="price">PRICE:</span><?php echo $price;?>
 	
 		<div id="buy">
-		<input type="button" value="Buy Now" onclick="addtocart(<?php echo $sid?>)" />	
+		<input type="button" value="Buy Now" onclick="addtocart('<?php echo $sid?>','<?php echo $name?>','<?php echo $price?>')" />	
 	</div>
 </div>
 </div>
