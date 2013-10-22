@@ -12,10 +12,10 @@
 	}
 	else
 	{
-		$id=$_SESSION['id'];
 		$unique_key = substr(md5(rand(0, 1000000)), 0, 10);
 		$sessionid=$unique_key;
 		$_SESSION['id']=$sessionid;
+		$id=$_SESSION['id'];
 		mysql_query("create table `$id`(id int(3)primary key auto_increment,pid varchar(5) not null,item varchar(20) not null,quantity varchar(3) not null,price float not null)");
 	}
 		error_reporting(E_ALL);

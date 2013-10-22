@@ -22,9 +22,9 @@ class SQLQuery{
 				$sqlString="select *from menu where status='$where'";
 				break;	
 			case "editMenu":
-				echo $name=$where[0];
-				echo $href=$where[1];
-				echo $status=$where[2];
+				$name=$where[0];
+				$href=$where[1];
+				$status=$where[2];
 				$sqlString = "update menu set name='$name' and href='$href' and status='$status'";
 				break;
 			case "deleteMenu":
@@ -73,9 +73,9 @@ class SQLQuery{
 				break;
 				
 			case "removeproduct":
-					$uid=$where[0];
-					$pid=$where[1];
-			echo $sqlString="delete from `$uid` where pid='$pid'";
+				 $uid=$where[0];
+				 $pid=$where[1];
+				 $sqlString="delete from `$uid` where pid='$pid'";
 				break;
 
 			case "productname":

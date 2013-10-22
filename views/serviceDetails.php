@@ -8,10 +8,10 @@ include_once("../includes/system/kickstart.php");
         }
         else
         {
-                $id=$_SESSION['id'];
                 $unique_key = substr(md5(rand(0, 1000000)), 0, 10);
                 $sessionid=$unique_key;
                 $_SESSION['id']=$sessionid;
+		$id=$_SESSION['id'];
                 mysql_query("create table `$id`(id int(3)primary key auto_increment,pid varchar(5) not null,item varchar(20) not null,quantity varchar(3) not null,price float not null)");
         }
 	
@@ -137,7 +137,7 @@ if($_REQUEST['command']=='add' && $_REQUEST['productid']>0)
 	$sql=$QUERY->formStaticQuery("addcart",$arr);
 	$DB->executeQuery($sql);
 
-	header("location:shoppingcart.php?id=$pid&item=$item&price=$price1");
+	header("location:shoppingcart.php");
 	exit();
 }
 ?>
@@ -231,7 +231,7 @@ function addtocart(pid,item,price)
                 </div>
        
                 <span class="buy">
-                    <a href="serviceDetails.php?type=<?php echo "Individual";?>&sid=<?php echo $info[$i]['sid'];?>&price=<?php echo $info[$i]['price'];?>&des=<?php echo $info[$i]['desc'];?>">Buy Now</a></span>
+                    <a href="serviceDetails.php?type=<?php echo "Individual";?>&name= <?php echo $info[$i]['sname'];?>&sid=<?php echo $info[$i]['sid'];?>&price=<?php echo $info[$i]['price'];?>&des=<?php echo $info[$i]['desc'];?>">Buy Now</a></span>
                 </div>   
 
         <?php
