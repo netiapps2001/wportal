@@ -25,12 +25,9 @@ include_once("../includes/system/kickstart.php");
 		$service_result= $QUERY->formStaticQuery("fetchServiceDetail",1);
 		$service_detail =$DB->executeQuery($service_result);
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd>
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 	<head>
-
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Wealth Junction</title>
 		<link type="text/css" rel="stylesheet" href="css/style.css" />
@@ -38,11 +35,8 @@ include_once("../includes/system/kickstart.php");
 		<SCRIPT src="../includes/js/jquery-1.4.2.min.js" type=text/javascript></SCRIPT>
 		<SCRIPT src="../includes/js/jquery.jcarousel.min.js" type=text/javascript></SCRIPT>
 		<SCRIPT src="../includes/js/banner.js" type=text/javascript></SCRIPT>
-
 	</head>
-
 	<body>
-
 		<div id="container">
 			<div id="main_container">
 				<!--Header starts here -->
@@ -57,91 +51,58 @@ include_once("../includes/system/kickstart.php");
                         <li>FORGOT USER ID</li>
                     </ul>
                 </div>
-
                 <div id="crm_login"><a href="#">LOGIN TO CRM</a></div>
-
-            </div>
-
-        </div>
+	        </div>
+	        </div>
 
         <!--Header Ends here -->
-
         <!--Menu Starts here -->
-
         <div id="menu_block">
-
-        	<ul>
-
+            <ul>
             	<li><a href="#">Home</a></li>
-
                 <li><a href="#">Products</a></li>
-
                 <li><a href="#">Services</a></li>
-
                 <li><a href="#">Associations</a></li>
-
                 <li><a href="#">About Us</a></li>
-
                 <li><a href="#">Contact Us</a></li>
-
             </ul>
-
         </div>
 
         <!--Menu Ends here -->
-
          <!--banner Starts here -->
-
         <div id="banner_block">
-
-			<div id=wowslider-container1>
-
+		<div id=wowslider-container1>
             	<div class=ws_images>
-
                     <ul>
-
                      	<li><img src="../includes/images/index_images/banner1.jpg"  id=wows0 ></li>
-
                         <li><img src="../includes/images/index_images/banner2.png" id=wows1 ></li>
-
                         <li><img src="../includes/images/index_images/banner3.jpg" id=wows2 ></li>
-
                         <li><img src="../includes/images/index_images/banner1.jpg" id=wows3 ></li>
-
                         <li><img src="../includes/images/index_images/banner2.png" id=wows4 ></li>
-
                      </ul>
-
-                  </div> 
-
+                 </div> 
                </div>
-
                <script src="../includes/js/slider.js" type="text/javascript"></script>
-
                <script src="../includes/js/script.js" type="text/javascript"></script>
-
-			</div>
+	</div>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <?php     
 
-include_once("../actions/functions.php");
 if($_REQUEST['command']=='add' && $_REQUEST['productid']>0)
 {
    	$pid=$_REQUEST['productid'];
 	$item=$_REQUEST['item'];
 	$price1=$_REQUEST['price'];
-	addtocart($pid,1);
+	$IO->addtocart($pid,1);
 	$val=array($id,$pid);
 	$arr=array($pid,$item,1,$price1,$id);
 	$sql=$QUERY->formStaticQuery("addcart",$arr);
 	$DB->executeQuery($sql);
-
 	header("location:shoppingcart.php");
 	exit();
 }
 ?>
-
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -173,48 +134,34 @@ function addtocart(pid,item,price)
 	<input type="hidden" name="price"/>
         <input type="hidden" name="command" />
 </form>
-
-
 <?php
  $name=$_GET['name'];
  $description=$_GET['des'];
  $sid = $_GET['sid'];
  $price = $_GET['price'];
 ?>
-
-<html>
-<body>
-	
-		<div class="serv_det_wrapper">
-		<div class="serv_details">
-			
+	<div class="serv_det_wrapper">
+	<div class="serv_details">			
 	<input type="hidden" id="userid" name="id" value="<?php echo $sid;?>">
-	
-		<div id="serv_image">
-			<?php echo '<img src="../includes/images/logo/product-logo/Term Insurance.jpg">'?>
-		</div>
-	
+	<div id="serv_image">
+		<?php echo '<img src="../includes/images/logo/product-logo/Term Insurance.jpg">'?>
+	</div>
         <div id="serv_name">
-			<?php echo "$name";?>
-		</div>
-        
+		<?php echo "$name";?>
+	</div>        
         <div id="serv_desc">
-			<?php echo" At Wealth Junction we have dedicated well-trained team";?>
+		<?php echo" At Wealth Junction we have dedicated well-trained team";?>
         </div>
-        
         <span class="price">PRICE:</span><?php echo $price;?>
-	
 		<div id="buy">
 		<input type="button" value="Buy Now" onclick="addtocart('<?php echo $sid?>','<?php echo $name?>','<?php echo $price?>')" />	
 	</div>
-</div>
-</div>
-
+	</div>
+	</div>
 <?php
-           
-            $info = $client->__call('fetchServiceList', array('Individual','Service'));// Salesorder ID and Invoice No   
-
-            for($i=0 ; $i < $info['totalRecords']; $i++){   
+        $info = $client->__call('fetchServiceList', array('Individual','Service'));// Salesorder ID and Invoice No   
+        for($i=0 ; $i < $info['totalRecords']; $i++)
+	{   
             ?>
 
                 <div class="service_details">
@@ -238,31 +185,14 @@ function addtocart(pid,item,price)
             }
         ?>
 
-       
-<SCRIPT src="../includes/js/tab.js" type=text/javascript></SCRIPT>
-
-			
-
+       <SCRIPT src="../includes/js/tab.js" type=text/javascript></SCRIPT>
         <!-- container Ends here -->
-
-		
-
-		<div id="footer">
-
-    	<div id="footer_block">
-
-        	<div id="footer_left">Copyright (C) 2010. Wealth Junction Consultants Pvt. Ltd. All rights reserved </div>
-
-            <div id="footer_right">Powered by Netiapps</div>
-
-        
-
+	<div id="footer">
+	    	<div id="footer_block">
+       			<div id="footer_left">Copyright (C) 2010. Wealth Junction Consultants Pvt. Ltd. All rights reserved </div>
+	        	<div id="footer_right">Powered by Netiapps</div>
+	        </div>
         </div>
-
-    
-
-    </div>
-
 </div>
 
 </body>
