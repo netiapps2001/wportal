@@ -46,6 +46,7 @@ function fetchServiceList($id,$type)
 	}
 	$responseDoc->loadXML($responseString);
         return $responseDoc->saveXML();
+	
 }
 $server->AddFunction("fetchServiceList");
 $server->handle();

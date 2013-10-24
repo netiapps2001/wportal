@@ -1,3 +1,7 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
 <?php
 session_start();
 include_once("../includes/system/kickstart.php");
@@ -19,14 +23,10 @@ include_once("../includes/system/kickstart.php");
 		error_reporting(E_ALL);
 		ini_set('display_errors', '1');
 		ini_set("soap.wsdl_cache_enabled", "0");
-		$client = new soapClient("http://192.168.1.10/~anupssh/SOAP/requests/pullServiceList.wsdl");
-		$result= $QUERY->formStaticQuery("fetchCompanyDetail",1);
-		$company_detail =$DB->executeQuery($result);
-		$service_result= $QUERY->formStaticQuery("fetchServiceDetail",1);
-		$service_detail =$DB->executeQuery($service_result);
+		$client = new soapClient("http://192.168.1.10/~anupssh/SOAP/requests/fetchDetails.wsdl");
+
+		
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd>
-<html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Wealth Junction</title>
@@ -135,10 +135,11 @@ function addtocart(pid,item,price)
         <input type="hidden" name="command" />
 </form>
 <?php
- $name=$_GET['name'];
+ $value = $_GET['value'];
  $description=$_GET['des'];
  $sid = $_GET['sid'];
- $price = $_GET['price'];
+
+	$info = $client->__call('fetchServiceList', array($sid,'Service'));// Salesorder ID and Invoice No
 ?>
 	<div class="serv_det_wrapper">
 	<div class="serv_details">			
@@ -147,19 +148,21 @@ function addtocart(pid,item,price)
 		<?php echo '<img src="../includes/images/logo/product-logo/Term Insurance.jpg">'?>
 	</div>
         <div id="serv_name">
-		<?php echo "$name";?>
+		<?php echo $name=$info['sname'];?>
 	</div>        
         <div id="serv_desc">
 		<?php echo" At Wealth Junction we have dedicated well-trained team";?>
         </div>
-        <span class="price">PRICE:</span><?php echo $price;?>
+        <span class="price">PRICE:</span><?php echo $price=$info['price'];?>
 		<div id="buy">
 		<input type="button" value="Buy Now" onclick="addtocart('<?php echo $sid?>','<?php echo $name?>','<?php echo $price?>')" />	
 	</div>
 	</div>
 	</div>
 <?php
-        $info = $client->__call('fetchServiceList', array('Individual','Service'));// Salesorder ID and Invoice No   
+
+	$client = new soapClient("http://192.168.1.10/~anupssh/SOAP/requests/pullServiceList.wsdl");
+        $info = $client->__call('fetchServiceList', array($value,'Service'));// Salesorder ID and Invoice No   
         for($i=0 ; $i < $info['totalRecords']; $i++)
 	{   
             ?>
@@ -178,7 +181,7 @@ function addtocart(pid,item,price)
                 </div>
        
                 <span class="buy">
-                    <a href="serviceDetails.php?type=<?php echo "Individual";?>&name= <?php echo $info[$i]['sname'];?>&sid=<?php echo $info[$i]['sid'];?>&price=<?php echo $info[$i]['price'];?>&des=<?php echo $info[$i]['desc'];?>">Buy Now</a></span>
+                    <a href="serviceDetails.php?type=<?php echo "Individual";?>&sid=<?php echo $info[$i]['sid'];?>&price=<?php echo $info[$i]['price'];?>&value=<?php echo "$value";?>&des=<?php echo $info[$i]['desc'];?>">Buy Now</a></span>
                 </div>   
 
         <?php

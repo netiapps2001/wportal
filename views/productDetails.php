@@ -13,6 +13,12 @@ session_start();
                 $_SESSION['id']=$sessionid;
                 mysql_query("create table `$id`(id int(3)primary key auto_increment,pid varchar(5) not null,item varchar(20) not null,quantity varchar(3) not null,price float not null)");
         }
+
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+ini_set("soap.wsdl_cache_enabled", "0");
+$client = new soapClient("http://192.168.1.10/~anupssh/SOAP/requests/fetchDetails.wsdl");
+
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -136,11 +142,12 @@ session_start();
 	<body>
 
 		<?php
-	
-			  $name=$_GET['name'];
-			  $description=$_GET['des'];
-			  $id = $_GET['pid'];
-			  $price= $_GET['price'];
+		
+			$id = $_GET['pid'];
+			 
+		
+		$info = $client->__call('fetchServiceList', array($id,'Product'));// Salesorder ID and Invoice No
+					
 		?>
 		
 		<div class="prod_det_wrapper">
@@ -152,7 +159,7 @@ session_start();
             </div>
         	
         	<div id="prod_name">
-				<?php echo $name?>
+				<?php echo $info['pname'];?>
 		    </div>
 
 			<div id="prod_desc">
@@ -229,32 +236,9 @@ session_start();
 	</form>
 </body>
 </div>
-<!-- code to fetch images-->
-		<?php
-			$dir ='../includes/images/logo/product-logo/';
-			$file_display = array('gif','jpg');
 
-				if(file_exists($dir)==false)
-				{
-					echo "not found";
-				}
-					else{
-						$dir_contents = scandir($dir);
-							
-			foreach($dir_contents as $file){
-				$file_type = end(explode('.',$file));
-				
-				
-				if(in_array($file_type , $file_display)==true){
-					
-					echo '<img src ="'.$dir.''/''.$file.'"/>';
-					}
-					}
-					}
-					
-		?>
 
-					<SCRIPT src="../includes/js/tab.js" type=text/javascript></SCRIPT>
+		<SCRIPT src="../includes/js/tab.js" type=text/javascript></SCRIPT>
 
 			</div>
 
